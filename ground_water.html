@@ -37,6 +37,11 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="lib/highlight.js/styles/github.css">
+    <script src="lib/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     
   </head>
 
@@ -77,33 +82,269 @@
     <div class="container">
 
       <h3>Ground Water Data</h3>
-	<p>Plotting district-wise ground water levels for each state in India, for the period 2005-2009. The data is sourced from <a href="http://www.imd.gov.in/" target="_blank">India Metereological Department</a>.</p>
+	<p> Plotting ground water levels for each state in India, for the period 2005-2009. The data is sourced from <a href="http://www.imd.gov.in/" target="_blank">India Metereological Department</a>.</p>
 	<br />
 	<h4>Charts:</h4>
-	<p>Legend: Each district of the state is represented as a line, with time on X-axis and ground water levels on Y-axis.</p>
-	<p> Note: Click on thumbnails to see full-size charts. Hit *Escape* to exit the lightbox.</p>
+	<p><strong>How to use:</strong> Click on thumbnails to see full-size charts. Hit *Escape* to exit the lightbox.</p>
+	<p><strong>Legends:</strong> Each line represents ground water level conditions in a district of the state concerned, across the period 2005-2009. Time is plotted on X-axis and Y-axis shows ground water levels.</p>
+	<p><strong>Note on data:</strong> There were no available (or, non-zero) data for the states of Andaman & Nicobar, Goa, Lakshadweep, Mizoram and Sikkim, and the Union Territories of Daman & Diu and Pondicherry. Data for only one district of the state of Manipur was available. Data availability is discontinuous for the districts of Nagaland. All entries taking the value '0' (zero), and/or months with missing values, are removed from the charts for easier reading.</p>
+	<p><strong>Note on interpretation:</strong> The charts give an understanding of the diversity of ground water level conditions within a state, across the period 2005-2009. Darker shades indicate at multiple districts moving through similar paths. Dominance of darker shades, as in Orissa, suggests a homogeneous state-level situation; while more individuated lines, like in Rajasthan, suggests greater diversity. Separated bands of lines, as in Gujarat, suggests multiple zones (within the state) of similar condition. The visualisations will hopefully give an useful entry point for more detailed, especially district-specific, analysis.</p>
 	<br />
 	<ul class="thumbnails">
 		<li class="span3">
 			<div class="thumbnail">
-			<a href="images/ground_water/gw_ap_2005-09_01.png" rel="lightbox[gw]" title="Andhra Pradesh, 2005-09"><img src="images/ground_water/gw_ap_2005-09_01_sm.png">
+			<a href="images/ground_water/gw_andhra_pradesh_2005-09_01.png" rel="lightbox[gw]" title="Andhra Pradesh, 2005-09"><img src="images/ground_water/gw_andhra_pradesh_2005-09_01_sm.png">
 			<h8>Andhra Pradesh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_arunachal_pradesh_2005-09_01.png" rel="lightbox[gw]" title="Arunachal Pradesh, 2005-09"><img src="images/ground_water/gw_arunachal_pradesh_2005-09_01_sm.png">
+			<h8>Arunachal Pradesh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_assam_2005-09_01.png" rel="lightbox[gw]" title="Assam, 2005-09"><img src="images/ground_water/gw_assam_2005-09_01_sm.png">
+			<h8>Assam</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_bihar_2005-09_01.png" rel="lightbox[gw]" title="Bihar, 2005-09"><img src="images/ground_water/gw_bihar_2005-09_01_sm.png">
+			<h8>Bihar</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_chandigarh_2005-09_01.png" rel="lightbox[gw]" title="Chandigarh, 2005-09"><img src="images/ground_water/gw_chandigarh_2005-09_01_sm.png">
+			<h8>Chandigarh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_chhattisgarh_2005-09_01.png" rel="lightbox[gw]" title="Chhattisgarh, 2005-09"><img src="images/ground_water/gw_chhattisgarh_2005-09_01_sm.png">
+			<h8>Chhattisgarh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_dadra_nagar_haveli_2005-09_01.png" rel="lightbox[gw]" title="Dadra & Nagar Haveli, 2005-09"><img src="images/ground_water/gw_dadra_nagar_haveli_2005-09_01_sm.png">
+			<h8>Dadra & Nagar Haveli</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_delhi_2005-09_01.png" rel="lightbox[gw]" title="Delhi, 2005-09"><img src="images/ground_water/gw_delhi_2005-09_01_sm.png">
+			<h8>Delhi</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_gujarat_2005-09_01.png" rel="lightbox[gw]" title="Gujarat, 2005-09"><img src="images/ground_water/gw_gujarat_2005-09_01_sm.png">
+			<h8>Gujarat</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_haryana_2005-09_01.png" rel="lightbox[gw]" title="Haryana, 2005-09"><img src="images/ground_water/gw_haryana_2005-09_01_sm.png">
+			<h8>Haryana</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_himachal_pradesh_2005-09_01.png" rel="lightbox[gw]" title="Himachal Pradesh, 2005-09"><img src="images/ground_water/gw_himachal_pradesh_2005-09_01_sm.png">
+			<h8>Himachal Pradesh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_jammu_kashmir_2005-09_01.png" rel="lightbox[gw]" title="Jammu & Kashmir, 2005-09"><img src="images/ground_water/gw_jammu_kashmir_2005-09_01_sm.png">
+			<h8>Jammu & Kashmir</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_jharkhand_2005-09_01.png" rel="lightbox[gw]" title="Jharkhand, 2005-09"><img src="images/ground_water/gw_jharkhand_2005-09_01_sm.png">
+			<h8>Jharkhand</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_karnataka_2005-09_01.png" rel="lightbox[gw]" title="Karnataka, 2005-09"><img src="images/ground_water/gw_karnataka_2005-09_01_sm.png">
+			<h8>Karnataka</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_kerala_2005-09_01.png" rel="lightbox[gw]" title="Kerala, 2005-09"><img src="images/ground_water/gw_kerala_2005-09_01_sm.png">
+			<h8>Kerala</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_madhya_pradesh_2005-09_01.png" rel="lightbox[gw]" title="Madhya Pradesh, 2005-09"><img src="images/ground_water/gw_madhya_pradesh_2005-09_01_sm.png">
+			<h8>Madhya Pradesh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_maharashtra_2005-09_01.png" rel="lightbox[gw]" title="Maharashtra, 2005-09"><img src="images/ground_water/gw_maharashtra_2005-09_01_sm.png">
+			<h8>Maharashtra</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_manipur_2005-09_01.png" rel="lightbox[gw]" title="Manipur, 2005-09"><img src="images/ground_water/gw_manipur_2005-09_01_sm.png">
+			<h8>Manipur</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_meghalaya_2005-09_01.png" rel="lightbox[gw]" title="Meghalaya, 2005-09"><img src="images/ground_water/gw_meghalaya_2005-09_01_sm.png">
+			<h8>Meghalaya</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_nagaland_2005-09_01.png" rel="lightbox[gw]" title="Nagaland, 2005-09"><img src="images/ground_water/gw_nagaland_2005-09_01_sm.png">
+			<h8>Nagaland</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_orissa_2005-09_01.png" rel="lightbox[gw]" title="Orissa, 2005-09"><img src="images/ground_water/gw_orissa_2005-09_01_sm.png">
+			<h8>Orissa</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_punjab_2005-09_01.png" rel="lightbox[gw]" title="Punjab, 2005-09"><img src="images/ground_water/gw_punjab_2005-09_01_sm.png">
+			<h8>Punjab</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_rajasthan_2005-09_01.png" rel="lightbox[gw]" title="Rajasthan, 2005-09"><img src="images/ground_water/gw_rajasthan_2005-09_01_sm.png">
+			<h8>Rajasthan</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_tamilnadu_2005-09_01.png" rel="lightbox[gw]" title="Tamilnadu, 2005-09"><img src="images/ground_water/gw_tamilnadu_2005-09_01_sm.png">
+			<h8>Tamilnadu</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_tripura_2005-09_01.png" rel="lightbox[gw]" title="Tripura, 2005-09"><img src="images/ground_water/gw_tripura_2005-09_01_sm.png">
+			<h8>Tripura</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_uttar_pradesh_2005-09_01.png" rel="lightbox[gw]" title="Uttar Pradesh, 2005-09"><img src="images/ground_water/gw_uttar_pradesh_2005-09_01_sm.png">
+			<h8>Uttar Pradesh</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_uttaranchal_2005-09_01.png" rel="lightbox[gw]" title="Uttaranchal, 2005-09"><img src="images/ground_water/gw_uttaranchal_2005-09_01_sm.png">
+			<h8>Uttaranchal</h8>
+			</a></div>
+		<li>
+		<li class="span3">
+			<div class="thumbnail">
+			<a href="images/ground_water/gw_west_bengal_2005-09_01.png" rel="lightbox[gw]" title="West Bengal, 2005-09"><img src="images/ground_water/gw_west_bengal_2005-09_01_sm.png">
+			<h8>West Bengal</h8>
 			</a></div>
 		<li>
 	</ul>
 	<br />
 	<h4>Documentation:</h4>
 	<br />
-	<p>
-	</p>
+	<p>The <a href="" target="_blank">original dataset</a> was structured in the following columns (showing only an excerpt):</p>
+	<pre><code>State,District,Year,Id,Site Name,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec,Avg
+ANDHRA PRADESH,Adilabad,2005,1,Bhimavaram1,7.25,,,,8.88,,,6.94,,,2.85,,6.48
+ANDHRA PRADESH,Adilabad,2005,2,Jaipur1,4.9,6.63,7.04,,7.8,7.96,6.95,6.79,6.69,6.82,7,7.35,7
+ANDHRA PRADESH,Adilabad,2005,3,Chennur,,,,,51.4,51.5,51.35,51.02,50.1,50.08,51.1,51.25,50.98</pre></code>
+	<p>Initial task was to re-organise the dataset, so that each row represents an unique combination of time (month and year) and ground water level for a specific district. That is the dataset was to be reshaped into the form shown in the sample table below:</p>
+	<pre><code>"State","District","Ground_Water_Level","Date"
+ANDHRA PRADESH","Adilabad",7.07,"2005-01-01"
+ANDHRA PRADESH","Adilabad",7.99707317073171,"2006-01-01"
+ANDHRA PRADESH","Adilabad",7.62682926829268,"2007-01-01"</pre></code>
+	<p>And here are the steps to do that re-shaping of data in R. First we read in the data using the <code>read.csv</code> command, and then remove variables not needed for the work. Before loading the file, the blank values (' ' and 'NA') were replaced by '0' (zero) and the column name 'Site Name' was replaced by 'Site.Name'.
+	<pre><code>gw <- read.csv("GW_level_for_whole_country.csv")
+gw$Id <- NULL
+gw$Site.Name <- NULL
+gw$Avg <- NULL</code></pre>
+	<p>The <code>melt</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Rehape2 package of R</a> is very useful to convert specific columns into rows, while other columns remain unchanged (as opposed to transposition, where all the columns are converted to rows and vice-versa). Below, a new table 'gw.m' is created, where the columns 'State', 'District' and 'Year' are kept intact and all the other columns are converted to rows.</p>
+ 	<pre><code>library(reshape2)
+gw.m <- melt(gw, id = c("State", "District", "Year"))</pre></code>
+	<p>This converts the data to the following format:</p>
+	<pre><code>"State","District","Year","variable","value"
+"ANDHRA PRADESH","Adilabad",2005,"Jan",7.25
+"ANDHRA PRADESH","Adilabad",2005,"Jan",4.9
+"ANDHRA PRADESH","Adilabad",2005,"Jan",0</pre></code>
+	<p>The name of the columns that are converted into rows, are transformed into different values of the automatically created variable titled 'variable'. The other automatically created variable titled 'value', takes the corresponding cell value. That is the previous cell value of column C and row R now becomes the cell value of column 'value' and sub-row 'C' of row R'.</p>
+	<p>The above table shows multiple values of ground water level for the same month and year and for the same district. These appear because the original dataset included ground water levels measures at multiple test sites within an district. The next task, hence, is to find out the average ground water level acorss the test sites for a district for a month and year.</p>
+	<p>The conditional addition command below calculates the average of the variable 'value' for each unique combination of variables 'State', 'District', 'Year' and 'variable', and stores into a new column titled 'Ground_Water_Level'.</p>
+	<pre><code>gw.m$Ground_Water_Level <- with(gw.m, ave(value, State, District, Year, variable))</pre></code>
+	<p>The above command generates district-wise average ground water level for each month and year but does not remove the multiple rows that each district has for the same month and year, due to the multiple test sites. The duplicate rows need to be removed.</p>
+	<p>The <code>dcast</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Reshape2 package</a> creates separate columns out of values taken by a previous column. In our example below, a new data table 'gw.c' is created with the 'State', 'District and 'Year' columns remaining intact and each values of the earlier column 'variables' being converted to a column. This is done using the '~' (tilde) sign to separate the columns that will be unchanged and the column to be converted. While converting each values of the column 'variable' into a separate column, the <code>dcast</code> command also de-duplicates the rows with same values in (previous) columns 'State', 'District', 'Year' and 'variable' and stores the mean of corresponding cell values. This is followed by the <code>melt</code> command that again converts the columns created by the <code>dcast</code> command to column values, thus generating unique (and de-duplicated) combinations of month, year and ground water levels for all districts.</p>
+	<pre><code>gw.c <- dcast(gw.m, State + District + Year ~ variable, mean)
+gw.m <- melt(gw.c, id = c("State", "District", "Year"))</pre></code>
+	<p>Now we have the data in the following format:
+	<pre><code>State,District,Year,variable,value
+"ANDHRA PRADESH","Adilabad",2005,"Jan",7.07
+"ANDHRA PRADESH","Adilabad",2006,"Jan",7.99707317073171
+"ANDHRA PRADESH","Adilabad",2007,"Jan",7.62682926829268</pre></code>
+	<p>As can be seen above, the data table re-organisation working is almost complete. The next step is creating up a clean single-column date format. In the code snippet below, first a dummy column 'day' is created with values '1'. Next, the month codes are converted to numerics (into a new column 'month'). Then a new column 'd' is created by pasting the values of the columns 'day', 'month' and 'Year' (separated by '-'), followed by converting this column into a date column using the <code>as.Date</code> command. At the end, the columns that are not needed any more are removed, and the column 'value' is renamed.</p>
+	<pre><code>gw.m$day <- 1
+
+gw.m$month[gw.m$variable == "Jan"] <- 1
+gw.m$month[gw.m$variable == "Feb"] <- 2
+gw.m$month[gw.m$variable == "Mar"] <- 3
+gw.m$month[gw.m$variable == "Apr"] <- 4
+gw.m$month[gw.m$variable == "May"] <- 5
+gw.m$month[gw.m$variable == "Jun"] <- 6
+gw.m$month[gw.m$variable == "Jul"] <- 7
+gw.m$month[gw.m$variable == "Aug"] <- 8
+gw.m$month[gw.m$variable == "Sep"] <- 9
+gw.m$month[gw.m$variable == "Oct"] <- 10
+gw.m$month[gw.m$variable == "Nov"] <- 11
+gw.m$month[gw.m$variable == "Dec"] <- 12
+
+gw.m$d <- paste(gw.m$day, gw.m$month, gw.m$Year, sep = "-")
+
+gw.m$Date <- as.Date(gw.m$d, format = "%d-%m-%Y")
+
+gw.m$variable <- NULL
+gw.m$day <- NULL
+gw.m$month <- NULL
+gw.m$year <- NULL
+gw.m$d <- NULL
+
+colnames(gw.m)[4] <- "Ground_Water_Level"</pre></code>
+	<p>Thus we get the data table converted to the following format:</p>
+	<pre><code>"State","District","Ground_Water_Level","Date"
+"ANDHRA PRADESH","Adilabad",7.07,"2005-01-01"
+"ANDHRA PRADESH","Adilabad",7.99707317073171,"2006-01-01"
+"ANDHRA PRADESH","Adilabad",7.62682926829268,"2007-01-01"</pre></code>
+	<p>As the data is now reshaped and formatted, state-specific charts can be created easily. The commands below take state-specific (Andhra Pradesh, in our example) subset of the overall dataset and takes a further subset of the state-specific dataset so as to remove all rows where the variable 'Ground_Water_Level' takes the value '0' (zero).</p>
+	<pre><code>ap <- subset(gw.m, gw.m$State == "ANDHRA PRADESH")
+ap2 <- subset(ap, ap$Ground_Water_Level > 0)</pre></code>
+	<p>Finally, the <a href="" target="_blank">ggplot2 package</a> is used to generate the line chart of ground water levels of the state of Andhra Pradesh.</p>
+	<pre><code>library(ggplot2)
+ggplot(ap2, aes(x = Date, y = Ground_Water_Level, group = District)) + geom_line(colour = "#888888") + ylab("Ground Water Level") + xlab("Year")</pre></code>
+	<p>The entire code for this visualisation can be downloaded from <a href="" target="_blank">Github</a>.</p>
 	<br />
 	<h4>Code and License:</h4>
 	<br />
 	<p>All visualisations are created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
-	<p>Relevant code snippets are attached with visualisation documentations. The full code repository can be accessed on <a href="https://github.com/ajantriks/iwp" target="_blank">Github</a>.</p>
+	<p>Relevant code snippets are attached with visualisation documentations. The full code repository is available on <a href="https://github.com/ajantriks/iwp" target="_blank">Github</a>.</p>
 	<p>The code (but not the data) is released under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
-	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a> and <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>.</p>
-	<br />
+	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
 	<br />
 	<br />
     </div> <!-- /container -->
@@ -112,18 +353,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="lib/bootstrap/js/jquery.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-transition.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-alert.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-modal.js"></script>
     <script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-tab.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-popover.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-button.js"></script>
     <script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-typeahead.js"></script>
 
   </body>
 </html>
