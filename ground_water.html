@@ -270,9 +270,9 @@ ANDHRA PRADESH,Adilabad,2005,2,Jaipur1,4.9,6.63,7.04,,7.8,7.96,6.95,6.79,6.69,6.
 ANDHRA PRADESH,Adilabad,2005,3,Chennur,,,,,51.4,51.5,51.35,51.02,50.1,50.08,51.1,51.25,50.98</pre></code>
 	<p>Initial task was to re-organise the dataset, so that each row represents an unique combination of time (month and year) and ground water level for a specific district. That is the dataset was to be reshaped into the form shown in the sample table below:</p>
 	<pre><code>"State","District","Ground_Water_Level","Date"
-ANDHRA PRADESH","Adilabad",7.07,"2005-01-01"
-ANDHRA PRADESH","Adilabad",7.99707317073171,"2006-01-01"
-ANDHRA PRADESH","Adilabad",7.62682926829268,"2007-01-01"</pre></code>
+"ANDHRA PRADESH","Adilabad",7.07,"2005-01-01"
+"ANDHRA PRADESH","Adilabad",7.99707317073171,"2006-01-01"
+"ANDHRA PRADESH","Adilabad",7.62682926829268,"2007-01-01"</pre></code>
 	<p>And here are the steps to do that re-shaping of data in R. First we read in the data using the <code>read.csv</code> command, and then remove variables not needed for the work. Before loading the file, the blank values (' ' and 'NA') were replaced by '0' (zero) and the column name 'Site Name' was replaced by 'Site.Name'.
 	<pre><code>gw <- read.csv("GW_level_for_whole_country.csv")
 gw$Id <- NULL
@@ -334,7 +334,7 @@ colnames(gw.m)[4] <- "Ground_Water_Level"</pre></code>
 	<p>As the data is now reshaped and formatted, state-specific charts can be created easily. The commands below take state-specific (Andhra Pradesh, in our example) subset of the overall dataset and takes a further subset of the state-specific dataset so as to remove all rows where the variable 'Ground_Water_Level' takes the value '0' (zero).</p>
 	<pre><code>ap <- subset(gw.m, gw.m$State == "ANDHRA PRADESH")
 ap2 <- subset(ap, ap$Ground_Water_Level > 0)</pre></code>
-	<p>Finally, the <a href="" target="_blank">ggplot2 package</a> is used to generate the line chart of ground water levels of the state of Andhra Pradesh.</p>
+	<p>Finally, the <a href="http://ggplot2.org/" target="_blank">ggplot2 package</a> is used to generate the line chart of ground water levels of the state of Andhra Pradesh.</p>
 	<pre><code>library(ggplot2)
 ggplot(ap2, aes(x = Date, y = Ground_Water_Level, group = District)) + geom_line(colour = "#888888") + ylab("Ground Water Level") + xlab("Year")</pre></code>
 	<p>The entire code for this visualisation can be downloaded from <a href="" target="_blank">Github</a>.</p>
