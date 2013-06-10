@@ -339,12 +339,12 @@ d2 <- subset(d, d$State == "ANDHRA PRADESH")</pre></code>
 library(scales)
 
 ggplot(d2, aes(x = Date, y = Ground_Water_Level, group = District)) + geom_line(colour = "#02A4D3") + ylab("Ground Water Level") + xlab("Year") + scale_x_date(breaks = date_breaks("4 months"), labels = date_format("%b-%y")) + coord_cartesian(xlim = c(as.Date("2005-01-01"), as.Date("2009-12-01")))</pre></code>
-	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="R_code/ground_water.R" target="_blank">from Github</a>.</p>
+	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="R_code/ground_water.R" target="_blank">from GitHub</a>. The datasets (reorganised from original datasets from IMD) used to create the above charts can also be downloaded from the <a href="data/ground_water_india_2005-09_no_zero.csv" target="_blank">GitHub repository</a>.</p>
 	<br />
 	<h4>Code and License:</h4>
 	<br />
 	<p>All visualisations are created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
-	<p>Relevant code snippets are attached with visualisation documentations. The full code repository is available on <a href="https://github.com/ajantriks/iwp" target="_blank">Github</a>.</p>
+	<p>Relevant code snippets are attached with visualisation documentations. The full code repository is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
 	<p>The code (but not the data) is released under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
 	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
 	<br />
