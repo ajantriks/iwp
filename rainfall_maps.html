@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rainfall Maps | Visualising Water Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visualising Water Data for India Water Portal">
+    <meta name="author" content="ajantriks">
+
+    <!-- Google Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Bitter|Open+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS -->
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+    <!-- Lightbox -->
+    <script src="lib/lightbox/js/jquery-1.7.2.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.js"></script>
+
+    <link href="lib/lightbox/css/lightbox.css" rel="stylesheet" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="lib/bootstrap/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="lib/highlight.js/styles/github.css">
+    <script src="lib/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="brand">Visualising Water Data</div>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class=""><a href="index.html">Home</a></li>
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualisations <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="draught_maps.html"><strike>Draught Maps</strike></a></li>
+                  <li><a href="ground_water.html">Ground Water Charts</a></li>
+                  <li><a href="kausani_rainfall.html"><strike>Kausani Rainfall Charts</strike></a></li>
+                  <li><a href="rainfall_maps.html">Rainfall Maps</a></li>
+                </ul>
+              </li>
+	    </ul>
+	  </div>
+	  <div class="navbar-inner pull-right">
+	    <ul class="nav">
+	      <li><a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a></li>
+              <li><a href="http://www.ajantriks.net/" target="_blank">ajantriks</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <h3>Rainfall Maps</h3>
+	<p>District level maps of average monthly rainfall for each year from 1901 to 2002. The rainfall data is sourced from <a href="http://www.imd.gov.in/" target="_blank">India Metereological Department</a> (IMD), and the Indian district boundaries are sourced from the <a href="http://gadm.org/" target="_blank">GADM database</a>.</p>
+	<br />
+	<h4>Maps:</h4>
+	<p><strong>How to use:</strong> Click on thumbnails to see full-size maps. Hit *Escape* to exit the lightbox.</p>
+	<p><strong>Legends:</strong> These are <a href="https://en.wikipedia.org/wiki/Choropleth" target="_blank">choropleth maps</a>. Each district is shaded according to the volume of average monthly rainfall for that district for that year. The colour chart with respective rainfall volumes is given at the right side of the maps.</p>
+	<p><strong>Note on data:</strong> The IMD rainfall data does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. In the maps, these districts can be found as white (gap) areas. Details of the districts with absent data can be found in the file containing the <a href="R_code/rainfall_maps.R">R code for generating these maps</a>. <em>Please note that Indian district boundaries data available from <a href="http://gadm.org/" target="_blank">GADM</a> does not represent the official national boundary of the country</em>.</p>
+	<br />
+	<ul class="thumbnails">
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1901.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1901"><img src="images/rainfall_maps/imd_1901.png">
+			<h8>1901</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1902.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1902"><img src="images/rainfall_maps/imd_1902.png">
+			<h8>1902</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1903.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1903"><img src="images/rainfall_maps/imd_1903.png">
+			<h8>1903</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1904.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1904"><img src="images/rainfall_maps/imd_1904.png">
+			<h8>1904</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1905.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1905"><img src="images/rainfall_maps/imd_1905.png">
+			<h8>1905</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1906.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1906"><img src="images/rainfall_maps/imd_1906.png">
+			<h8>1906</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1907.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1907"><img src="images/rainfall_maps/imd_1907.png">
+			<h8>1907</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1908.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1908"><img src="images/rainfall_maps/imd_1908.png">
+			<h8>1908</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1909.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1909"><img src="images/rainfall_maps/imd_1909.png">
+			<h8>1909</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1910.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1910"><img src="images/rainfall_maps/imd_1910.png">
+			<h8>1910</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1911.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1911"><img src="images/rainfall_maps/imd_1911.png">
+			<h8>1911</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1912.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1912"><img src="images/rainfall_maps/imd_1912.png">
+			<h8>1912</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1913.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1913"><img src="images/rainfall_maps/imd_1913.png">
+			<h8>1913</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1914.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1914"><img src="images/rainfall_maps/imd_1914.png">
+			<h8>1914</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1915.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1915"><img src="images/rainfall_maps/imd_1915.png">
+			<h8>1915</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1916.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1916"><img src="images/rainfall_maps/imd_1916.png">
+			<h8>1916</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1917.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1917"><img src="images/rainfall_maps/imd_1917.png">
+			<h8>1917</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1918.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1918"><img src="images/rainfall_maps/imd_1918.png">
+			<h8>1918</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1919.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1919"><img src="images/rainfall_maps/imd_1919.png">
+			<h8>1919</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1920.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1920"><img src="images/rainfall_maps/imd_1920.png">
+			<h8>1920</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1921.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1921"><img src="images/rainfall_maps/imd_1921.png">
+			<h8>1921</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1922.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1922"><img src="images/rainfall_maps/imd_1922.png">
+			<h8>1922</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1923.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1923"><img src="images/rainfall_maps/imd_1923.png">
+			<h8>1923</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1924.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1924"><img src="images/rainfall_maps/imd_1924.png">
+			<h8>1924</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1925.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1925"><img src="images/rainfall_maps/imd_1925.png">
+			<h8>1925</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1926.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1926"><img src="images/rainfall_maps/imd_1926.png">
+			<h8>1926</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1927.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1927"><img src="images/rainfall_maps/imd_1927.png">
+			<h8>1927</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1928.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1928"><img src="images/rainfall_maps/imd_1928.png">
+			<h8>1928</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1929.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1929"><img src="images/rainfall_maps/imd_1929.png">
+			<h8>1929</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1930.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1930"><img src="images/rainfall_maps/imd_1930.png">
+			<h8>1930</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1931.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1931"><img src="images/rainfall_maps/imd_1931.png">
+			<h8>1931</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1932.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1932"><img src="images/rainfall_maps/imd_1932.png">
+			<h8>1932</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1933.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1933"><img src="images/rainfall_maps/imd_1933.png">
+			<h8>1933</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1934.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1934"><img src="images/rainfall_maps/imd_1934.png">
+			<h8>1934</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1935.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1935"><img src="images/rainfall_maps/imd_1935.png">
+			<h8>1935</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1936.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1936"><img src="images/rainfall_maps/imd_1936.png">
+			<h8>1936</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1937.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1937"><img src="images/rainfall_maps/imd_1937.png">
+			<h8>1937</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1938.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1938"><img src="images/rainfall_maps/imd_1938.png">
+			<h8>1938</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1939.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1939"><img src="images/rainfall_maps/imd_1939.png">
+			<h8>1939</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1940.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1940"><img src="images/rainfall_maps/imd_1940.png">
+			<h8>1940</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1941.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1941"><img src="images/rainfall_maps/imd_1941_small.png">
+			<h8>1941</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1942.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1942"><img src="images/rainfall_maps/imd_1942_small.png">
+			<h8>1942</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/ground_water/rainfall_maps/imd_1943.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1943"><img src="images/rainfall_maps/imd_1943_small.png">
+			<h8>1943</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1944.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1944"><img src="images/rainfall_maps/imd_1944_small.png">
+			<h8>1944</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1945.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1945"><img src="images/rainfall_maps/imd_1945_small.png">
+			<h8>1945</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1946.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1946"><img src="images/rainfall_maps/imd_1946_small.png">
+			<h8>1946</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1947.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1947"><img src="images/rainfall_maps/imd_1947_small.png">
+			<h8>1947</h8>
+			</a></div>
+		</li>																
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1948.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1948"><img src="images/rainfall_maps/imd_1948_small.png">
+			<h8>1948</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1949.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1949"><img src="images/ground_water/rainfall_maps/imd_1949_small.png">
+			<h8>1949</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1950.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1950"><img src="images/rainfall_maps/imd_1950_small.png">
+			<h8>1950</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1951.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1951"><img src="images/rainfall_maps/imd_1951_small.png">
+			<h8>1951</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1952.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1952"><img src="images/rainfall_maps/imd_1952_small.png">
+			<h8>1952</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1953.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1953"><img src="images/rainfall_maps/imd_1953_small.png">
+			<h8>1953</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1954.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1954"><img src="images/rainfall_maps/imd_1954_small.png">
+			<h8>1954</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1955.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1955"><img src="images/rainfall_maps/imd_1955_small.png">
+			<h8>1955</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1956.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1956"><img src="images/rainfall_maps/imd_1956_small.png">
+			<h8>1956</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1957.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1957"><img src="images/rainfall_maps/imd_1957_small.png">
+			<h8>1957</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1958.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1958"><img src="images/rainfall_maps/imd_1958_small.png">
+			<h8>1958</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1959.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1959"><img src="images/rainfall_maps/imd_1959_small.png">
+			<h8>1959</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1960.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1960"><img src="images/rainfall_maps/imd_1960_small.png">
+			<h8>1960</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1961.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1961"><img src="images/ground_water/rainfall_maps/imd_1961_small.png">
+			<h8>1961</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1962.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1962"><img src="images/rainfall_maps/imd_1962_small.png">
+			<h8>1962</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1963.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1963"><img src="images/rainfall_maps/imd_1963_small.png">
+			<h8>1963</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1964.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1964"><img src="images/rainfall_maps/imd_1964_small.png">
+			<h8>1964</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1965.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1965"><img src="images/rainfall_maps/imd_1965_small.png">
+			<h8>1965</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1966.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1966"><img src="images/rainfall_maps/imd_1966_small.png">
+			<h8>1966</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1967.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1967"><img src="images/rainfall_maps/imd_1967_small.png">
+			<h8>1967</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1968.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1968"><img src="images/rainfall_maps/imd_1968_small.png">
+			<h8>1968</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1969.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1969"><img src="images/rainfall_maps/imd_1969_small.png">
+			<h8>1969</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1970.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1970"><img src="images/rainfall_maps/imd_1970_small.png">
+			<h8>1970</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1971.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1971"><img src="images/rainfall_maps/imd_1971_small.png">
+			<h8>1971</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1972.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1972"><img src="images/rainfall_maps/imd_1972_small.png">
+			<h8>1972</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1973.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1973"><img src="images/rainfall_maps/imd_1973_small.png">
+			<h8>1973</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1974.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1974"><img src="images/rainfall_maps/imd_1974_small.png">
+			<h8>1974</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1975.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1975"><img src="images/rainfall_maps/imd_1975_small.png">
+			<h8>1975</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1976.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1976"><img src="images/rainfall_maps/imd_1976_small.png">
+			<h8>1976</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1977.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1977"><img src="images/rainfall_maps/imd_1977_small.png">
+			<h8>1977</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1978.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1978"><img src="images/rainfall_maps/imd_1978_small.png">
+			<h8>1978</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1979.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1979"><img src="images/rainfall_maps/imd_1979_small.png">
+			<h8>1979</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1980.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1980"><img src="images/rainfall_maps/imd_1980_small.png">
+			<h8>1980</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1981.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1981"><img src="images/rainfall_maps/imd_1981_small.png">
+			<h8>1981</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1982.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1982"><img src="images/rainfall_maps/imd_1982_small.png">
+			<h8>1982</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1983.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1983"><img src="images/rainfall_maps/imd_1983_small.png">
+			<h8>1983</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1984.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1984"><img src="images/rainfall_maps/imd_1984_small.png">
+			<h8>1984</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1985.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1985"><img src="images/rainfall_maps/imd_1985_small.png">
+			<h8>1985</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1986.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1986"><img src="images/rainfall_maps/imd_1986_small.png">
+			<h8>1986</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1987.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1987"><img src="images/rainfall_maps/imd_1987_small.png">
+			<h8>1987</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1988.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1988"><img src="images/rainfall_maps/imd_1988_small.png">
+			<h8>1988</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1989.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1989"><img src="images/rainfall_maps/imd_1989_small.png">
+			<h8>1989</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1990.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1990"><img src="images/rainfall_maps/imd_1990_small.png">
+			<h8>1990</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1991.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1991"><img src="images/rainfall_maps/imd_1991_small.png">
+			<h8>1991</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1992.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1992"><img src="images/rainfall_maps/imd_1992_small.png">
+			<h8>1992</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1993.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1993"><img src="images/rainfall_maps/imd_1993_small.png">
+			<h8>1993</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1994.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1994"><img src="images/rainfall_maps/imd_1994_small.png">
+			<h8>1994</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1995.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1995"><img src="images/rainfall_maps/imd_1995_small.png">
+			<h8>1995</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1996.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1996"><img src="images/rainfall_maps/imd_1996_small.png">
+			<h8>1996</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1997.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1997"><img src="images/rainfall_maps/imd_1997_small.png">
+			<h8>1997</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1998.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1998"><img src="images/rainfall_maps/imd_1998_small.png">
+			<h8>1998</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_1999.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 1999"><img src="images/rainfall_maps/imd_1999_small.png">
+			<h8>1999</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_2000.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 2000"><img src="images/rainfall_maps/imd_2000_small.png">
+			<h8>2000</h8>
+			</a></div>
+		</li>
+	</ul>
+	<ul class="thumbnails">		
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_2001.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 2001"><img src="images/rainfall_maps/imd_2001_small.png">
+			<h8>2001</h8>
+			</a></div>
+		</li>
+		<li class="span2">
+			<div class="thumbnail">
+			<a href="images/rainfall_maps/imd_2002.png" rel="lightbox[rm]" title="Average Monthly Rainfall across Districts, India, 2002"><img src="images/rainfall_maps/imd_2002_small.png">
+			<h8>2002</h8>
+			</a></div>
+		<li>
+	</ul>
+	<br />
+	<h4>Documentation:</h4>
+	<br />
+	<p>The original IMD rainfall data for 1901-2002 comes in three MS Excel spreadsheets, and each of them contains data for a set of states (for the entire period). The data is organised as follows (with the state and district codes given in a separate sheet of the spreadsheet file):</p>
+	<pre><code>State ID,District ID,Year,January,February,March,April,May,June,July,August,September,October,November,December
+1,1,1901,398.24,331.86,563.32,757.26,944.61,802.88,1020.44,432.67,717.18,223.14,44.45,101.16
+1,1,1902,255.22,331.97,746.78,962.14,954.47,1116.03,910.09,688.77,542.22,434.55,523.79,159.64
+1,1,1903,607.9,589.12,692.71,594.51,830.91,817.7,1094.51,983.38,732.75,165.03,146.73,210.24</pre></code>
+	<p>To use this data along with the Indian district boundaries datset from <a href="http://gadm.org/" target="_blank">GADM</a>, it needs to be re-organised in the following format, where each row gives the monthly average rainfall (for the year concerned) for a specific district for a specific year:</p>
+	<pre><code>"State.ID","District.ID","Year","Avg.Monthly.Rainfall"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,528.100833333333
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,635.4725
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,622.124166666667</pre></code>
+	<p>This format is useful because it allows the *District.ID* value of a row to be used to link up the measurement of average monthly rainfall for a district (and for a year) to its corresponding district boundary shape (available from the Indian district boundaries data file). To enable this, the name of the districts must match between the rainfall data file and the district boundaries shape file.</p>
+	
+	<p>To do this, the first IMD rainfall data file is converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then the state and district codes from the IMD rainfall data file is converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shape file. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shape file) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shape file) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
+	<pre><code>d <- read.csv ("imd_states_1-10.csv")
+
+d$State.ID [d$State.ID == "1"] <- "Jammu and Kashmir"
+
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "1"] <- "Kupwara (Muzaffarabad)"</code></pre>
+	<p>Once such replacing of the state and district codes by their corresponding names (spelt as in GADM district boundaries shape file) is done, the data takes the following form:</p>
+	<pre><code>"State.ID","District.ID","Year","January","February","March","April","May","June","July","August","September","October","November","December"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,398.24,331.86,563.32,757.26,944.61,802.88,1020.44,432.67,717.18,223.14,44.45,101.16
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,255.22,331.97,746.78,962.14,954.47,1116.03,910.09,688.77,542.22,434.55,523.79,159.64
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,607.9,589.12,692.71,594.51,830.91,817.7,1094.51,983.38,732.75,165.03,146.73,210.24</pre></code>
+	<p>All the three IMD rainfall data spreadsheets are converted to this form and unifed into a single .csv file, by adding the rows vertically. The combined rainfall data file is named "imd_states_name_1-35.csv"</p>
+	<p>Now the present structure of the table, where each row shows monthly rainfall counts for all months for a single year, needs to be changed to a structure where each rows gives the monthly rainfall in a district for an unique combination of year and month. This is done using the <code>melt</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Rehape2 package of R</a>, by converting the month columns ("January" to "December") into a single column that takes the months as its values.</p>
+	<pre><code>d <- read.csv ("imd_states_name_1-35.csv")
+	
+library(reshape2)
+dm <- melt(d, id = c('State.ID', 'District.ID', 'Year'))</code></pre>
+	<p>This converts the data to the following format:</p>
+	<pre><code>"State.ID","District.ID","Year","variable","value"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,"January",398.24
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,"January",255.22
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,"January",607.9</pre></code>
+	<p>But this gives the volume of rainfall for each district for each month (for each year), and not the average monthly rainfall for each district (for each year) that we need to generate the maps concerned.</p>
+	<p>The following command generates this average monthly rainfall for each district (for each year),by taking the average of *value* for all rows with unique combinations of *State.ID*, *District.ID* and Year.</p>
+	<pre><code>dm$Avg.Monthly.Rainfall <- with(dm, ave(value, State.ID, District.ID, Year))</pre></code>
+	<p>This converts the data to the following format:</p>
+	<pre><code>"State.ID","District.ID","Year","variable","value","Avg.Monthly.Rainfall"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,"January",398.24,528.100833333333
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,"January",255.22,635.4725
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,"January",607.9,622.124166666667</code></pre>
+		<p>Though not visible above, the resultant data file still has separate rows for all the months of each year. Since, the average monthly rainfalls for each year have already been generated, there is no need for these rows for separate months. The first line below takes a subset of the data with only rows for the month of "January" (for all years); and the second and third lines respectively remove the variables *variable* and *value*, which are not needed anymore.</p>
+		<pre><code>d2 <- subset(dm, dm$variable == "January")
+
+d2$variable <- NULL
+
+d2$value <- NULL
+
+write.csv(d2, file = "imd_states_name_1-35_avg-monthly-rainfall.csv")</code></pre>
+	<p>Now we have the data in the following format, and it is ready for mapping:</p>
+	<pre><code>"State.ID","District.ID","Year","Avg.Monthly.Rainfall"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,528.100833333333
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,635.4725
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,622.124166666667</code></pre>
+		<p>The Indian administrative boundaries (shapefile) data file is downloaded from the <a href="http://gadm.org/country" target="_blank">GADM website</a>, and opened using the <code>readOGR</code> command of the <a href="http://cran.r-project.org/web/packages/rgdal/index.html" target="_blank">rgdal library of R</a>. Further, the shapefile data is converted to a R data frame, which can be used by the <a href="http://cran.r-project.org/web/packages/ggplot2/index.html" target="_blank">ggplot2 library</a> for mapping, by using the <code>fortify</code> command.</p>
+	<pre><code>library(sp)
+library(rgdal)
+i <- readOGR (dsn = "IND_adm/", layer = "IND_adm2")
+
+library(maptools)
+gpclibPermit()
+library(ggplot2)
+m <- fortify(i, region = "NAME_2")</pre></code>
+	<p>Please note that the Indian administrative boundaries data file from GADM contains state, district and sub-district boundaries. For the purpose of these maps, the district level boundaries are used, by choosing the "IND_adm2" layer, and by fortifying the map data with the "NAME_2" variable that contains the district names.</p>
+	<p>To choose the average monthly rainfall for a specific year ("1901"), the final re-organised rainfall data file is opened and the corresponding subset of the entire data is taken.</p>
+	<pre><code>d <- read.csv ("imd_states_name_1-35_avg-monthly-rainfall.csv")
+
+d1901 <- subset (d, d$Year == "1901")</code></pre>
+	<p>Finally, we draw the map using the <a href="http://cran.r-project.org/web/packages/ggplot2/index.html" target="_blank">ggplot2 library of R</a>.<p>
+	<pre><code>ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Avg.Monthly.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#efefef", high = "blue") + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Rainfall", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")</code></pre>
+	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="R_code/rainfall_maps.R" target="_blank">from GitHub</a>. The datasets (reorganised from original datasets from IMD) used to create the above charts can also be downloaded from the <a href="data/imd_states_name_1-35_avg-monthly-rainfall.csv" target="_blank">GitHub repository</a>.</p>
+	<br />
+	<h4>Code and License:</h4>
+	<br />
+	<p>All visualisations are created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
+	<p>Relevant code snippets are attached with visualisation documentations. The full code repository is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
+	<p>The code (but not the data) is released under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
+	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
+	<p><em>Note: While sharing or re-using this work, please include the link to this page and the entire text of the *Code and License* section (along with the links).</em></p>
+	<br />
+	<br />
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="lib/bootstrap/js/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
+
+  </body>
+</html>
