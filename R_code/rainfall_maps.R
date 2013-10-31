@@ -1,6 +1,6 @@
 # Created by @ajantriks for India Water Portal
 # Shared under Attribution-ShareAlike Unported license
-# Details here: <http://ajantriks.github.io/iwp/rainfall_maps.html>
+# Details: <http://ajantriks.github.io/iwp/rainfall_maps.html>
 
 # Opening the first IMD rainfall data spreadsheet file (pre-converted to .csv format)
 d <- read.csv ("imd_states_1-10.csv")
@@ -706,6 +706,7 @@ i <- readOGR (dsn = "IND_adm/", layer = "IND_adm2")
 library(maptools)
 gpclibPermit()
 library(ggplot2)
+library(scales)
 m <- fortify(i, region = "NAME_2")
 
 # Opening the revised IMD data file
@@ -716,8 +717,5 @@ View(d)
 d1901 <- subset (d, d$Year == "1901")
 
 # Draw the map
-ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Avg.Monthly.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#efefef", high = "blue") + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Rainfall", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")
-
-
-
+ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Avg.Monthly.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#00FFFF", high = "#0000C8", space = "Lab", limits = c(0, 1150), breaks = c(0, 250, 500, 750, 1000, 1150)) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Rainfall\n(mm)\n", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")
 

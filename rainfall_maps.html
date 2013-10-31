@@ -62,9 +62,9 @@
               <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualisations <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="drought_maps.html"><strike>Drought Maps</strike></a></li>
+                  <li><a href="drought_maps.html">Drought Maps</a></li>
                   <li><a href="ground_water.html">Ground Water Charts</a></li>
-                  <li><a href="kausani_rainfall.html"><strike>Kausani Rainfall Charts</strike></a></li>
+                  <li><a href="kausani_rainfall.html">Kausani Rainfall Charts</a></li>
                   <li><a href="rainfall_maps.html">Rainfall Maps</a></li>
                 </ul>
               </li>
@@ -83,41 +83,42 @@
     <div class="container">
 
       <h3>Rainfall Maps</h3>
-	<p>District level maps of average monthly rainfall for each year from 1901 to 2002. The rainfall data is sourced from <a href="http://www.imd.gov.in/" target="_blank">India Metereological Department</a> (IMD), and the Indian district boundaries are sourced from the <a href="http://gadm.org/" target="_blank">GADM database</a>.</p>
+	<p>Maps of average monthly rainfall in each district for each year from 1901 to 2002. The rainfall data is sourced from <a href="http://www.imd.gov.in/" target="_blank">India Metereological Department</a> (IMD), the Indian district boundaries are sourced from the <a href="http://gadm.org/" target="_blank">GADM database</a>, and the national boundary of India is extracted from the <a href="http://www.censusindia.gov.in/2011census/maps/administrative_maps/INDIA2011.pdf" target="_blank">administrative divisions map of Census of India 2011</a>.</p>
 	<br />
 	<h4>Maps:</h4>
 	<p><strong>How to use:</strong> Click on thumbnails to see full-size maps. Hit *Escape* to exit the lightbox.</p>
-	<p><strong>Legends:</strong> These are <a href="https://en.wikipedia.org/wiki/Choropleth" target="_blank">choropleth maps</a>. Each district is shaded according to the volume of average monthly rainfall for that district for that year. The colour chart with respective rainfall volumes is given at the right side of the maps.</p>
-	<p><strong>Note on data:</strong> The IMD rainfall data does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. In the maps, these districts can be found as white (gap) areas. Details of the districts with absent data can be found in the file containing the <a href="R_code/rainfall_maps.R">R code for generating these maps</a>. <em>Please note that Indian district boundaries data available from <a href="http://gadm.org/" target="_blank">GADM</a> does not represent the official national boundary of the country</em>.</p>
+	<p><strong>Legends:</strong> These are <a href="https://en.wikipedia.org/wiki/Choropleth" target="_blank">choropleth maps</a>. Each district is shaded according to the volume of average monthly rainfall for that district for that year. Colour chart is given with each map. Darker blue indicates greater rainfall. Lighter cyan indicates lesser rainfall.</p>
+	<p><strong>Note on rainfall data:</strong> The rainfall data available from IMD does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. In the maps, these districts can be found as white (absent data) areas. Details of the districts with absent data can be found in the file containing the <a href="R_code/rainfall_maps.R">R code for generating these maps</a>.</p> 
+	<p><strong>Note on administrative boundaries data:</strong> Please note that district and national boundary data available from <a href="http://gadm.org/" target="_blank">GADM</a> and extracted from <a href="http://www.censusindia.gov.in/2011census/maps/administrative_maps/INDIA2011.pdf" target="_blank">administrative divisions map of Census of India 2011</a> may not accurately represent the official national boundary of the country, and may neither include the most recent list of districts.</p>	
 	<br />
 	<ul class="thumbnails">
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1901.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1901"><img src="images/rainfall_maps/imd_1901.png">
+			<a href="images/rainfall_maps/imd_rainfall_1901_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1901"><img src="images/rainfall_maps/imd_rainfall_1901_web_small.png">
 			<h8>1901</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1902.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1902"><img src="images/rainfall_maps/imd_1902.png">
+			<a href="images/rainfall_maps/imd_rainfall_1902_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1902"><img src="images/rainfall_maps/imd_rainfall_1902_web_small.png">
 			<h8>1902</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1903.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1903"><img src="images/rainfall_maps/imd_1903.png">
+			<a href="images/rainfall_maps/imd_rainfall_1903_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1903"><img src="images/rainfall_maps/imd_rainfall_1903_web_small.png">
 			<h8>1903</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1904.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1904"><img src="images/rainfall_maps/imd_1904.png">
+			<a href="images/rainfall_maps/imd_rainfall_1904_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1904"><img src="images/rainfall_maps/imd_rainfall_1904_web_small.png">
 			<h8>1904</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1905.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1905"><img src="images/rainfall_maps/imd_1905.png">
+			<a href="images/rainfall_maps/imd_rainfall_1905_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1905"><img src="images/rainfall_maps/imd_rainfall_1905_web_small.png">
 			<h8>1905</h8>
 			</a></div>
 		</li>
@@ -125,31 +126,31 @@
 	<ul class="thumbnails">
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1906.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1906"><img src="images/rainfall_maps/imd_1906.png">
+			<a href="images/rainfall_maps/imd_rainfall_1906_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1906"><img src="images/rainfall_maps/imd_rainfall_1906_web_small.png">
 			<h8>1906</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1907.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1907"><img src="images/rainfall_maps/imd_1907.png">
+			<a href="images/rainfall_maps/imd_rainfall_1907_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1907"><img src="images/rainfall_maps/imd_rainfall_1907_web_small.png">
 			<h8>1907</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1908.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1908"><img src="images/rainfall_maps/imd_1908.png">
+			<a href="images/rainfall_maps/imd_rainfall_1908_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1908"><img src="images/rainfall_maps/imd_rainfall_1908_web_small.png">
 			<h8>1908</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1909.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1909"><img src="images/rainfall_maps/imd_1909.png">
+			<a href="images/rainfall_maps/imd_rainfall_1909_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1909"><img src="images/rainfall_maps/imd_rainfall_1909_web_small.png">
 			<h8>1909</h8>
 			</a></div>
 		</li>
 		<li class="span2">
 			<div class="thumbnail">
-			<a href="images/rainfall_maps/imd_1910.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1910"><img src="images/rainfall_maps/imd_1910.png">
+			<a href="images/rainfall_maps/imd_rainfall_1910_web.png" rel="lightbox[gw]" title="Average Monthly Rainfall across Districts, India, 1910"><img src="images/rainfall_maps/imd_rainfall_1910_web_small.png">
 			<h8>1910</h8>
 			</a></div>
 		</li>
@@ -757,15 +758,15 @@
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,528.100833333333
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,635.4725
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,622.124166666667</pre></code>
-	<p>This format is useful because it allows the *District.ID* value of a row to be used to link up the measurement of average monthly rainfall for a district (and for a year) to its corresponding district boundary shape (available from the Indian district boundaries data file). To enable this, the name of the districts must match between the rainfall data file and the district boundaries shape file.</p>
+	<p>This format is useful because it allows the *District.ID* value of a row to be used to link up the measurement of average monthly rainfall for a district (and for a year) to its corresponding district boundary shape (available from the Indian district boundaries data file). To enable this, the name of the districts must match between the rainfall data file and the district boundaries shapefile.</p>
 	
-	<p>To do this, the first IMD rainfall data file is converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then the state and district codes from the IMD rainfall data file is converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shape file. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shape file) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shape file) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
+	<p>To do this, the first IMD rainfall data file is converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then the state and district codes from the IMD rainfall data file is converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shapefile. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shapefile) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shapefile) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
 	<pre><code>d <- read.csv ("imd_states_1-10.csv")
 
 d$State.ID [d$State.ID == "1"] <- "Jammu and Kashmir"
 
 d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "1"] <- "Kupwara (Muzaffarabad)"</code></pre>
-	<p>Once such replacing of the state and district codes by their corresponding names (spelt as in GADM district boundaries shape file) is done, the data takes the following form:</p>
+	<p>Once such replacing of the state and district codes by their corresponding names (spelt as in GADM district boundaries shapefile) is done, the data takes the following form:</p>
 	<pre><code>"State.ID","District.ID","Year","January","February","March","April","May","June","July","August","September","October","November","December"
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,398.24,331.86,563.32,757.26,944.61,802.88,1020.44,432.67,717.18,223.14,44.45,101.16
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,255.22,331.97,746.78,962.14,954.47,1116.03,910.09,688.77,542.22,434.55,523.79,159.64
@@ -810,6 +811,7 @@ i <- readOGR (dsn = "IND_adm/", layer = "IND_adm2")
 library(maptools)
 gpclibPermit()
 library(ggplot2)
+library(scales)
 m <- fortify(i, region = "NAME_2")</pre></code>
 	<p>Please note that the Indian administrative boundaries data file from GADM contains state, district and sub-district boundaries. For the purpose of these maps, the district level boundaries are used, by choosing the "IND_adm2" layer, and by fortifying the map data with the "NAME_2" variable that contains the district names.</p>
 	<p>To choose the average monthly rainfall for a specific year ("1901"), the final re-organised rainfall data file is opened and the corresponding subset of the entire data is taken.</p>
@@ -817,16 +819,21 @@ m <- fortify(i, region = "NAME_2")</pre></code>
 
 d1901 <- subset (d, d$Year == "1901")</code></pre>
 	<p>Finally, we draw the map using the <a href="http://cran.r-project.org/web/packages/ggplot2/index.html" target="_blank">ggplot2 library of R</a>.<p>
-	<pre><code>ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Avg.Monthly.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#efefef", high = "blue") + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Rainfall", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")</code></pre>
-	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="R_code/rainfall_maps.R" target="_blank">from GitHub</a>. The datasets (reorganised from original datasets from IMD) used to create the above charts can also be downloaded from the <a href="data/imd_states_name_1-35_avg-monthly-rainfall.csv" target="_blank">GitHub repository</a>.</p>
+	<pre><code>ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Avg.Monthly.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#00FFFF", high = "#0000C8", space = "Lab", limits = c(0, 1150), breaks = c(0, 250, 500, 750, 1000, 1150)) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Rainfall\n(mm)\n", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")</code></pre>
 	<br />
-	<h4>Code and License:</h4>
+	<h4>Code and Data:</h4>
 	<br />
-	<p>All visualisations are created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
-	<p>Relevant code snippets are attached with visualisation documentations. The full code repository is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
-	<p>The code (but not the data) is released under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
+	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="R_code/rainfall_maps.R" target="_blank">from here</a>.</p>
+	<p>Data (reorganised from the original data shared by IMD) used to create the above charts can also be downloaded <a href="data/imd_states_name_1-35_avg-monthly-rainfall.csv" target="_blank">from here</a>.</p>
+	<br />
+	<h4>Credits and License:</h4>
+	<br />
+	<p>Created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> for <a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a>.</p>
+	<p>All visualisations are developed using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
 	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
-	<p><em>Note: While sharing or re-using this work, please include the link to this page and the entire text of the *Code and License* section (along with the links).</em></p>
+	<p>Code for all the visualisations is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
+	<p>Code (but not data) is shared under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
+	<p><strong>Note: Please link back to this page while sharing or re-using this work.</strong></p>
 	<br />
 	<br />
     </div> <!-- /container -->
