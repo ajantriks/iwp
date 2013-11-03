@@ -333,8 +333,8 @@ library(scales)
 ggplot(m, aes(x = Date)) + geom_bar(stat = "identity", aes(y = Daily.Rainfall.Almora), fill = "#636363", colour = "#636363") + geom_bar(stat = "identity", aes(y = Daily.Rainfall.Kausani), fill = "#6195ED", colour = "#6195ED") + scale_x_date(breaks = date_breaks("1 month"), labels = date_format("%b-%Y")) + scale_y_continuous(limits = c(0, 175), breaks = c(0, 10, 20, 30, 40, 50, 75, 100, 125, 150, 175)) + theme(panel.background = element_rect(fill = "white"), panel.grid.major = element_line(color = "#eeeeee"), axis.line = element_line(color = "#666666"), axis.title = element_text(size = "18", color = "#666666"), axis.ticks = element_line(color = "#666666"), axis.text = element_text(color = "#666666", size = "16")) + xlab("") + ylab("Rainfall")</code></pre>
 	<br />
 	<h4>Code and Data:</h4>
-	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="R_code/kausani_rainfall_comparison.R" target="_blank">from here</a>.</p>
-	<p>Data (reorganised from the original data shared by IMD and Mr. David Hopkins) used to create the above charts can also be downloaded <a href="data/kausani_rainfall_comparison/" target="_blank">from here</a>.</p>
+	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="https://github.com/ajantriks/iwp/blob/master/R_code/kausani_rainfall_comparison.R" target="_blank">from here</a>.</p>
+	<p>Data (reorganised from the original data shared by IMD and Mr. David Hopkins) used to create the above charts can also be downloaded <a href="https://github.com/ajantriks/iwp/tree/master/data/kausani_rainfall_comparison" target="_blank">from here</a>.</p>
 	<br />
 	<h4>Credits and License:</h4>
 	<p>Created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> for <a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a>.</p>
@@ -342,6 +342,8 @@ ggplot(m, aes(x = Date)) + geom_bar(stat = "identity", aes(y = Daily.Rainfall.Al
 	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
 	<p>Code for all the visualisations is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
 	<p>Code (but not data) is shared under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
+	<p>Reorganised data has been shared only for the purpose of checking and validating the charts and maps.</p>
+	<p>It is necessary to take required permission from the original creator of data before re-using it.</p>	
 	<p><strong>Note: Please link back to this page while sharing or re-using this work.</strong></p>
 	<br />
 	<br />
