@@ -1,3 +1,7 @@
+# Created by @ajantriks for India Water Portal
+# Shared under Attribution-ShareAlike Unported license
+# Details: <http://ajantriks.github.io/iwp/ground_water.html>
+
 # load the dataset
 gw <- read.csv("GW_level_for_whole_country.csv")
 
