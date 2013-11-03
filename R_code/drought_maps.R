@@ -1,0 +1,743 @@
+# Created by @ajantriks for India Water Portal
+# Shared under Attribution-ShareAlike Unported license
+# Details: <http://ajantriks.github.io/iwp/drought_maps.html>
+
+# Opening the first IMD rainfall data spreadsheet file (pre-converted to .csv format)
+d <- read.csv ("imd_states_1-10.csv")
+View(d)
+
+# Replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shape file) if the present value is "1"
+d$State.ID [d$State.ID == "1"] <- "Jammu and Kashmir"
+
+# Replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shape file) if the present value is "1" 
+# and the corresponding *District.ID* value is "Jammu and Kashmir"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "1"] <- "Kupwara (Muzaffarabad)"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "2"] <- "Baramula (Kashmir North)"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "3"] <- "Srinagar"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "4"] <- "Bagdam"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "5"] <- "Pulwama"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "6"] <- "Anantnag (Kashmir South)"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "7"] <- "Ladakh (Leh)"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "8"] <- "Kargil"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "9"] <- "Doda"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "10"] <- "Udhampur"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "11"] <- "Punch"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "12"] <- "Rajauri"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "13"] <- "Jammu"
+d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "14"] <- "Kathua"
+View(d)
+
+d$State.ID [d$State.ID == "2"] <- "Himachal Pradesh"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "1"] <- "Chamba"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "2"] <- "Kangra"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "3"] <- "Lahul and Spiti"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "4"] <- "Kullu"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "5"] <- "Mandi"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "6"] <- "Hamirpur"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "7"] <- "Una"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "9"] <- "Solan"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "10"] <- "Sirmaur"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "11"] <- "Shimla"
+d$District.ID [d$State.ID == "Himachal Pradesh" & d$District.ID == "12"] <- "Kinnaur"
+
+d$State.ID [d$State.ID == "3"] <- "Punjab"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "1"] <- "Gurdaspur"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "2"] <- "Amritsar"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "3"] <- "Kapurthala"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "4"] <- "Jalandhar"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "5"] <- "Hoshiarpur"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "6"] <- "Nawan Shehar"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "7"] <- "Rupnagar"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "8"] <- "Fatehgarh Sahib"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "9"] <- "Ludhiana"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "10"] <- "Moga"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "11"] <- "Firozpur"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "12"] <- "Muktsar"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "13"] <- "Faridkot"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "14"] <- "Bathinda"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "15"] <- "Mansa"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "16"] <- "Sangrur"
+d$District.ID [d$State.ID == "Punjab" & d$District.ID == "17"] <- "Patiala"
+
+d$State.ID [d$State.ID == "4"] <- "Chandigarh"
+d$District.ID [d$State.ID == "Chandigarh" & d$District.ID == "1"] <- "Chandigarh"
+
+d$State.ID [d$State.ID == "5"] <- "Uttaranchal"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "1"] <- "Uttarkashi"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "2"] <- "Chamoli"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "3"] <- "Rudra Prayag"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "4"] <- "Tehri Garhwal"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "5"] <- "Dehra Dun"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "6"] <- "Pauri Garhwal"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "7"] <- "Pithoragarh"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "8"] <- "Bageshwar"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "9"] <- "Almora"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "10"] <- "Champawat"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "11"] <- "Naini Tal"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "12"] <- "Udham Singh Nagar"
+d$District.ID [d$State.ID == "Uttaranchal" & d$District.ID == "13"] <- "Haridwar"
+
+d$State.ID [d$State.ID == "6"] <- "Haryana"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "1"] <- "Panchkula"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "2"] <- "Ambala"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "3"] <- "Yamuna Nagar"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "4"] <- "Kurukshetra"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "5"] <- "Kaithal"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "6"] <- "Karnal"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "7"] <- "Panipat"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "8"] <- "Sonepat"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "9"] <- "Jind"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "10"] <- "Fatehabad"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "11"] <- "Sirsa"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "12"] <- "Hisar"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "13"] <- "Bhiwani"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "14"] <- "Rohtak"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "15"] <- "Jhajjar"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "16"] <- "Mahendragarh"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "17"] <- "Rewari"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "18"] <- "Gurgaon"
+d$District.ID [d$State.ID == "Haryana" & d$District.ID == "19"] <- "Faridabad"
+
+d$State.ID [d$State.ID == "7"] <- "Delhi"
+d$District.ID [d$State.ID == "Delhi" & d$District.ID == "1"] <- "Delhi"
+
+d$State.ID [d$State.ID == "8"] <- "Rajasthan"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "1"] <- "Ganganagar"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "2"] <- "Hanumangarh"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "3"] <- "Bikaner"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "4"] <- "Churu"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "5"] <- "Jhunjhunun"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "6"] <- "Alwar"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "7"] <- "Bharatpur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "8"] <- "Dhaulpur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "9"] <- "Karauli"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "10"] <- "Sawai Madhopur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "11"] <- "Dausa"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "12"] <- "Jaipur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "13"] <- "Sikar"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "14"] <- "Nagaur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "15"] <- "Jodhpur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "16"] <- "Jaisalmer"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "17"] <- "Barmer"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "18"] <- "Jalor"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "19"] <- "Sirohi"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "20"] <- "Pali"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "21"] <- "Ajmer"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "22"] <- "Tonk"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "23"] <- "Bundi"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "24"] <- "Bhilwara"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "25"] <- "Rajsamand"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "26"] <- "Udaipur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "27"] <- "Dungarpur"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "28"] <- "Banswara"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "29"] <- "Chittaurgarh"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "30"] <- "Kota"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "31"] <- "Baran"
+d$District.ID [d$State.ID == "Rajasthan" & d$District.ID == "32"] <- "Jhalawar"
+
+d$State.ID [d$State.ID == "9"] <- "Uttar Pradesh"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "1"] <- "Saharanpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "2"] <- "Muzaffarnagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "3"] <- "Bijnor"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "4"] <- "Moradabad"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "5"] <- "Rampur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "6"] <- "Jyotiba Phule Nagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "7"] <- "Meerut"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "8"] <- "Baghpat"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "9"] <- "Ghaziabad"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "10"] <- "Gautam Buddha Nagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "11"] <- "Bulandshahr"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "12"] <- "Aligarh"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "13"] <- "Hathras"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "14"] <- "Mathura"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "15"] <- "Agra"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "16"] <- "Firozabad"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "17"] <- "Etah"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "18"] <- "Mainpuri"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "19"] <- "Badaun"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "20"] <- "Bareilly"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "21"] <- "Pilibhit"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "22"] <- "Shahjahanpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "23"] <- "Lakhimpur Kheri"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "24"] <- "Sitapur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "25"] <- "Hardoi"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "26"] <- "Unnao"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "27"] <- "Lucknow"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "28"] <- "Rae Bareli"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "29"] <- "Farrukhabad"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "30"] <- "Kannauj"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "31"] <- "Etawah"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "32"] <- "Auraiya"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "33"] <- "Kanpur Dehat"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "34"] <- "Kanpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "35"] <- "Jalaun"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "36"] <- "Jhansi"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "37"] <- "Lalitpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "38"] <- "Hamirpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "39"] <- "Mahoba"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "40"] <- "Banda"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "41"] <- "Chitrakoot"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "42"] <- "Fatehpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "43"] <- "Pratapgarh"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "44"] <- "Kaushambi"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "45"] <- "Allahabad"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "46"] <- "Bara Banki"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "47"] <- "Faizabad"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "48"] <- "Ambedkar Nagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "49"] <- "Sultanpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "50"] <- "Bahraich"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "51"] <- "Shravasti"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "52"] <- "Balrampur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "53"] <- "Gonda"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "54"] <- "Siddharth Nagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "55"] <- "Basti"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "56"] <- "Sant Kabir Nagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "57"] <- "Maharajganj"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "58"] <- "Gorakhpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "59"] <- "Kushinagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "60"] <- "Deoria"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "61"] <- "Azamgarh"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "62"] <- "Mau"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "63"] <- "Ballia"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "64"] <- "Jaunpur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "65"] <- "Ghazipur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "66"] <- "Chandauli"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "67"] <- "Varanasi"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "68"] <- "Sant Ravi Das Nagar"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "69"] <- "Mirzapur"
+d$District.ID [d$State.ID == "Uttar Pradesh" & d$District.ID == "70"] <- "Sonbhadra"
+
+d$State.ID [d$State.ID == "10"] <- "Bihar"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "1"] <- "Pashchim Champaran"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "2"] <- "Purba Champaran"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "3"] <- "Sheohar"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "4"] <- "Sitamarhi"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "5"] <- "Madhubani"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "6"] <- "Supaul"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "7"] <- "Araria"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "8"] <- "Kishanganj"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "9"] <- "Purnia"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "10"] <- "Katihar"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "11"] <- "Madhepura"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "12"] <- "Saharsa"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "13"] <- "Darbhanga"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "14"] <- "Muzaffarpur"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "15"] <- "Gopalganj"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "16"] <- "Siwan"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "17"] <- "Saran"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "18"] <- "Vaishali"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "19"] <- "Samastipur"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "20"] <- "Begusarai"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "21"] <- "Khagaria"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "22"] <- "Bhagalpur"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "23"] <- "Banka"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "24"] <- "Munger"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "25"] <- "Lakhisarai"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "26"] <- "Sheikhpura"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "27"] <- "Nalanda"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "28"] <- "Patna"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "29"] <- "Bhojpur"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "30"] <- "Buxar"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "31"] <- "Bhabua"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "32"] <- "Rohtas"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "33"] <- "Jehanabad"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "34"] <- "Aurangabad"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "35"] <- "Gaya"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "36"] <- "Nawada"
+d$District.ID [d$State.ID == "Bihar" & d$District.ID == "37"] <- "Jamui"
+
+write.csv (d, file="imd_states_name_1-10.csv")
+
+d <- read.csv ("imd_states_11-25.csv")
+View(d)
+
+d$State.ID [d$State.ID == "11"] <- "Sikkim"
+d$District.ID [d$State.ID == "Sikkim" & d$District.ID == "1"] <- "North Sikkim"
+d$District.ID [d$State.ID == "Sikkim" & d$District.ID == "2"] <- "West Sikkim"
+d$District.ID [d$State.ID == "Sikkim" & d$District.ID == "3"] <- "South Sikkim"
+d$District.ID [d$State.ID == "Sikkim" & d$District.ID == "4"] <- "East"
+
+d$State.ID [d$State.ID == "12"] <- "Arunachal Pradesh"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "1"] <- "Tawang"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "2"] <- "West Kameng"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "3"] <- "East Kameng"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "5"] <- "Lower Subansiri"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "6"] <- "Upper Subansiri"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "7"] <- "West Siang"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "8"] <- "East Siang"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "10"] <- "Upper Dibang Valley"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "11"] <- "Lohit"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "12"] <- "Changlang"
+d$District.ID [d$State.ID == "Arunachal Pradesh" & d$District.ID == "13"] <- "Tirap"
+
+# IMD gives data for 'Dibang Valley' but there are two separate districts called 'Upper Dibang Valley' and 'Lower Dibang Valley'.
+# Entered IMD data for 'Dibang Valley' as that for 'Upper Dibang Valley'.
+
+d$State.ID [d$State.ID == "13"] <- "Nagaland"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "1"] <- "Mon"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "2"] <- "Tuensang"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "3"] <- "Mokokchung"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "4"] <- "Zunheboto"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "5"] <- "Wokha"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "7"] <- "Kohima"
+d$District.ID [d$State.ID == "Nagaland" & d$District.ID == "8"] <- "Phek"
+
+# IMD Data missing for 'Dimapur'.
+
+d$State.ID [d$State.ID == "14"] <- "Manipur"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "1"] <- "Senapati"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "2"] <- "Tamenglong"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "3"] <- "Churachandpur"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "4"] <- "Bishnupur"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "5"] <- "Thoubal"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "6"] <- "West Imphal"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "7"] <- "East Imphal"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "8"] <- "Ukhrul"
+d$District.ID [d$State.ID == "Manipur" & d$District.ID == "9"] <- "Chandel"
+
+d$State.ID [d$State.ID == "15"] <- "Mizoram"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "1"] <- "Mamit"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "2"] <- "Kolasib"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "3"] <- "Aizawl"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "4"] <- "Champhai"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "6"] <- "Lunglei"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "7"] <- "Lawngtlai"
+d$District.ID [d$State.ID == "Mizoram" & d$District.ID == "8"] <- "Saiha"
+
+# IMD Data missing for 'Serchhip'.
+
+d$State.ID [d$State.ID == "16"] <- "Tripura"
+d$District.ID [d$State.ID == "Tripura" & d$District.ID == "1"] <- "West Tripura"
+d$District.ID [d$State.ID == "Tripura" & d$District.ID == "2"] <- "South Tripura"
+d$District.ID [d$State.ID == "Tripura" & d$District.ID == "3"] <- "Dhalai"
+d$District.ID [d$State.ID == "Tripura" & d$District.ID == "4"] <- "North Tripura"
+
+d$State.ID [d$State.ID == "17"] <- "Meghalaya"
+d$District.ID [d$State.ID == "Meghalaya" & d$District.ID == "1"] <- "West Garo Hills"
+d$District.ID [d$State.ID == "Meghalaya" & d$District.ID == "2"] <- "East Garo Hills"
+d$District.ID [d$State.ID == "Meghalaya" & d$District.ID == "4"] <- "West Khasi Hills"
+d$District.ID [d$State.ID == "Meghalaya" & d$District.ID == "6"] <- "East Khasi Hills"
+d$District.ID [d$State.ID == "Meghalaya" & d$District.ID == "7"] <- "Jaintia Hills"
+
+# IMD Data missing for 'Ri-Bhoi' and 'South Garo Hills'.
+
+d$State.ID [d$State.ID == "18"] <- "Assam"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "1"] <- "Kokrajhar"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "2"] <- "Dhuburi"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "3"] <- "Goalpara"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "5"] <- "Barpeta"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "6"] <- "Kamrup"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "7"] <- "Nalbari"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "8"] <- "Darrang"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "10"] <- "Nagaon"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "11"] <- "Sonitpur"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "12"] <- "Lakhimpur"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "13"] <- "Dhemaji"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "14"] <- "Tinsukia"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "15"] <- "Dibrugarh"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "16"] <- "Sibsagar"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "17"] <- "Jorhat"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "18"] <- "Golaghat"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "19"] <- "Karbi Anglong"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "20"] <- "North Cachar Hills"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "21"] <- "Cachar"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "22"] <- "Karimganj"
+d$District.ID [d$State.ID == "Assam" & d$District.ID == "23"] <- "Hailakandi"
+
+# IMD Data missing for 'Bongaigaon' and 'Marigaon'.
+
+d$State.ID [d$State.ID == "19"] <- "West Bengal"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "1"] <- "Darjiling"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "2"] <- "Jalpaiguri"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "3"] <- "Kochbihar"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "4"] <- "Uttar Dinajpur"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "5"] <- "Dakshin Dinajpur"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "6"] <- "Maldah"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "7"] <- "Murshidabad"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "8"] <- "Birbhum"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "9"] <- "Barddhaman"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "10"] <- "Nadia"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "11"] <- "North 24 Parganas"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "12"] <- "Hugli"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "13"] <- "Bankura"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "14"] <- "Puruliya"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "15"] <- "East Midnapore"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "16"] <- "Haora"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "17"] <- "Kolkata"
+d$District.ID [d$State.ID == "West Bengal" & d$District.ID == "18"] <- "South 24 Parganas"
+
+# IMD gives data for 'Medinipur' but there are two separate districts called 'East Midnapur' and 'West Midnapur'.
+# Entered IMD data for 'Medinipur' as that for 'East Midnapore'.
+
+d$State.ID [d$State.ID == "20"] <- "Jharkhand"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "1"] <- "Garhwa"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "2"] <- "Palamu"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "3"] <- "Chatra"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "4"] <- "Hazaribag"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "5"] <- "Koderma"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "6"] <- "Giridih"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "7"] <- "Deoghar"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "8"] <- "Godda"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "9"] <- "Sahibganj"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "10"] <- "Pakur"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "11"] <- "Dumka"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "12"] <- "Dhanbad"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "13"] <- "Bokaro"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "14"] <- "Ranchi"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "15"] <- "Lohardaga"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "16"] <- "Gumla"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "17"] <- "Pashchim Singhbhum"
+d$District.ID [d$State.ID == "Jharkhand" & d$District.ID == "18"] <- "Purba Singhbhum"
+
+# IMD Data missing for 'Jamtara', 'Latehar', 'Saraikela Kharsawan', and 'Simdega'.
+
+d$State.ID [d$State.ID == "21"] <- "Orissa"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "1"] <- "Baragarh"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "2"] <- "Jharsuguda"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "3"] <- "Sambalpur"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "4"] <- "Deogarh"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "5"] <- "Sundargarh"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "6"] <- "Keonjhar"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "7"] <- "Mayurbhanj"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "8"] <- "Baleshwar"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "9"] <- "Bhadrak"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "10"] <- "Kendrapara"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "11"] <- "Jagatsinghpur"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "12"] <- "Cuttack"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "13"] <- "Jajpur"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "14"] <- "Dhenkanal"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "15"] <- "Angul"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "16"] <- "Nayagarh"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "17"] <- "Khordha"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "18"] <- "Puri"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "19"] <- "Ganjam"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "20"] <- "Gajapati"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "21"] <- "Kandhamal"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "22"] <- "Boudh"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "23"] <- "Sonepur"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "24"] <- "Bolangir"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "25"] <- "Nuapada"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "26"] <- "Kalahandi"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "27"] <- "Rayagada"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "28"] <- "Nabarangpur"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "29"] <- "Koraput"
+d$District.ID [d$State.ID == "Orissa" & d$District.ID == "30"] <- "Malkangiri"
+
+d$State.ID [d$State.ID == "22"] <- "Chhattisgarh"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "1"] <- "Koriya"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "2"] <- "Surguja"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "3"] <- "Jashpur"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "4"] <- "Raigarh"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "5"] <- "Korba"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "6"] <- "Janjgir-Champa"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "7"] <- "Bilaspur"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "8"] <- "Kawardha"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "9"] <- "Raj Nandgaon"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "10"] <- "Durg"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "11"] <- "Raipur"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "12"] <- "Mahasamund"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "13"] <- "Dhamtari"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "14"] <- "Kanker"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "15"] <- "Bastar"
+d$District.ID [d$State.ID == "Chhattisgarh" & d$District.ID == "16"] <- "Dantewada"
+
+d$State.ID [d$State.ID == "23"] <- "Madhya Pradesh"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "1"] <- "Sheopur"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "2"] <- "Morena"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "3"] <- "Bhind"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "4"] <- "Gwalior"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "5"] <- "Datia"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "6"] <- "Shivpuri"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "7"] <- "Guna"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "8"] <- "Tikamgarh"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "9"] <- "Chhatarpur"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "10"] <- "Panna"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "11"] <- "Sagar"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "12"] <- "Damoh"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "13"] <- "Satna"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "14"] <- "Rewa"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "15"] <- "Umaria"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "16"] <- "Shahdol"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "17"] <- "Sidhi"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "18"] <- "Neemuch"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "19"] <- "Mandsaur"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "20"] <- "Ratlam"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "21"] <- "Ujjain"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "22"] <- "Shajapur"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "23"] <- "Dewas"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "24"] <- "Jhabua"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "25"] <- "Dhar"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "26"] <- "Indore"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "27"] <- "West Nimar"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "28"] <- "Barwani"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "29"] <- "East Nimar"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "30"] <- "Rajgarh"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "31"] <- "Vidisha"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "32"] <- "Bhopal"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "33"] <- "Sehore"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "34"] <- "Raisen"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "35"] <- "Betul"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "36"] <- "Harda"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "37"] <- "Hoshangabad"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "38"] <- "Katni"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "39"] <- "Jabalpur"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "40"] <- "Narsinghpur"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "41"] <- "Dindori"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "42"] <- "Mandla"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "43"] <- "Chhindwara"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "44"] <- "Seoni"
+d$District.ID [d$State.ID == "Madhya Pradesh" & d$District.ID == "45"] <- "Balaghat"
+
+# IMD Data missing for 'Ashoknagar', 'Anuppur', and 'Burhanpur'.
+
+d$State.ID [d$State.ID == "24"] <- "Gujarat"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "1"] <- "Kachchh"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "2"] <- "Banas Kantha"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "3"] <- "Patan"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "4"] <- "Mahesana"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "5"] <- "Sabar Kantha"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "6"] <- "Gandhinagar"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "7"] <- "Ahmadabad"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "8"] <- "Surendranagar"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "9"] <- "Rajkot"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "10"] <- "Jamnagar"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "11"] <- "Porbandar"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "12"] <- "Junagadh"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "13"] <- "Amreli"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "14"] <- "Bhavnagar"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "15"] <- "Anand"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "16"] <- "Kheda"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "17"] <- "Panch Mahals"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "18"] <- "Dahod"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "19"] <- "Vadodara"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "29"] <- "Narmada"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "20"] <- "Narmada"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "21"] <- "Bharuch"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "22"] <- "Surat"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "23"] <- "The Dangs"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "24"] <- "Navsari"
+d$District.ID [d$State.ID == "Gujarat" & d$District.ID == "25"] <- "Valsad"
+
+d$State.ID [d$State.ID == "25"] <- "Daman and Diu"
+d$District.ID [d$State.ID == "Daman and Diu" & d$District.ID == "1"] <- "Junagadh"
+d$District.ID [d$State.ID == "Daman and Diu" & d$District.ID == "2"] <- "Daman"
+
+# IMD Data mentions the district 'Diu' (not mentioned by GADM), while GADM data has the district 'Junagadh' (not mentioned by IMD).
+# I have marked the IMD data for 'Diu' as that for 'Junagadh'.
+
+write.csv (d, file="imd_states_name_11-25.csv")
+
+d <- read.csv ("imd_states_26-35.csv")
+View(d)
+
+d$State.ID [d$State.ID == "26"] <- "Dadra and Nagar Haveli"
+d$District.ID [d$State.ID == "Dadra and Nagar Haveli" & d$District.ID == "1"] <- "Dadra and Nagar Haveli"
+
+d$State.ID [d$State.ID == "27"] <- "Maharashtra"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "1"] <- "Nandurbar"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "2"] <- "Dhule"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "3"] <- "Jalgaon"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "4"] <- "Buldana"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "5"] <- "Akola"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "6"] <- "Washim"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "7"] <- "Amravati"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "8"] <- "Wardha"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "9"] <- "Nagpur"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "10"] <- "Bhandara"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "11"] <- "Gondiya"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "12"] <- "Garhchiroli"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "13"] <- "Chandrapur"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "14"] <- "Yavatmal"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "15"] <- "Nanded"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "16"] <- "Hingoli"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "17"] <- "Parbhani"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "18"] <- "Jalna"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "19"] <- "Aurangabad"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "20"] <- "Nashik"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "21"] <- "Thane"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "22"] <- "Greater Bombay"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "23"] <- "Mumbai"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "24"] <- "Raigarh"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "25"] <- "Pune"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "26"] <- "Ahmednagar"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "27"] <- "Bid"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "28"] <- "Latur"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "29"] <- "Osmanabad"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "30"] <- "Solapur"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "31"] <- "Satara"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "32"] <- "Ratnagiri"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "33"] <- "Sindhudurg"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "34"] <- "Kolhapur"
+d$District.ID [d$State.ID == "Maharashtra" & d$District.ID == "35"] <- "Sangli"
+
+# IMD data mentions two districts 'Mumbai' and 'Mumbai (Suburban)' while GADM data only has one district 'Greater Bombay'.
+# IMD data for 'Mumbai (Suburban)' has been coded as that for 'Greater Bombay' and 'Mumbai' data has been coded as for 'Mumbai' 
+# (without a corresponding shape in GADM data).
+
+d$State.ID [d$State.ID == "28"] <- "Andhra Pradesh"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "1"] <- "Adilabad"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "2"] <- "Nizamabad"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "3"] <- "Karimnagar"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "4"] <- "Medak"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "5"] <- "Hyderabad"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "6"] <- "Rangareddi"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "7"] <- "Mahbubnagar"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "8"] <- "Nalgonda"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "9"] <- "Warangal"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "10"] <- "Khammam"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "11"] <- "Srikakulam"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "12"] <- "Vizianagaram"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "13"] <- "Vishakhapatnam"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "14"] <- "East Godavari"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "15"] <- "West Godavari"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "16"] <- "Krishna"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "17"] <- "Guntur"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "18"] <- "Prakasam"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "19"] <- "Nellore"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "20"] <- "Cuddapah"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "21"] <- "Kurnool"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "22"] <- "Anantapur"
+d$District.ID [d$State.ID == "Andhra Pradesh" & d$District.ID == "23"] <- "Chittoor"
+
+d$State.ID [d$State.ID == "29"] <- "Karnataka"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "1"] <- "Belgaum"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "2"] <- "Bagalkot"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "3"] <- "Bijapur"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "4"] <- "Gulbarga"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "5"] <- "Bidar"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "6"] <- "Raichur"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "7"] <- "Koppal"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "8"] <- "Gadag"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "9"] <- "Dharwad"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "10"] <- "Uttar Kannand"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "11"] <- "Haveri"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "12"] <- "Bellary"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "13"] <- "Chitradurga"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "14"] <- "Davanagere"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "15"] <- "Shimoga"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "16"] <- "Udupi"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "17"] <- "Chikmagalur"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "18"] <- "Tumkur"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "19"] <- "Kolar"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "20"] <- "Bangalore Urban"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "21"] <- "Bangalore Rural"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "22"] <- "Mandya"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "23"] <- "Hassan"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "24"] <- "Dakshin Kannad"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "25"] <- "Kodagu"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "26"] <- "Mysore"
+d$District.ID [d$State.ID == "Karnataka" & d$District.ID == "27"] <- "Chamrajnagar"
+
+d$State.ID [d$State.ID == "33"] <- "Tamil Nadu"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "1"] <- "Thiruvallur"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "2"] <- "Chennai"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "3"] <- "Kancheepuram"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "4"] <- "Vellore"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "5"] <- "Dharmapuri"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "6"] <- "Tiruvannamalai"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "7"] <- "Villupuram"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "8"] <- "Salem"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "9"] <- "Namakkal"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "10"] <- "Erode"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "11"] <- "Nilgiris"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "12"] <- "Coimbatore"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "13"] <- "Dindigul"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "14"] <- "Karur"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "15"] <- "Tiruchchirappalli"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "16"] <- "Perambalur"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "17"] <- "Ariyalur"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "18"] <- "Cuddalore"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "19"] <- "Nagapattinam"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "20"] <- "Thiruvarur"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "21"] <- "Thanjavur"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "22"] <- "Pudukkottai"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "23"] <- "Sivaganga"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "24"] <- "Madurai"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "25"] <- "Theni"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "26"] <- "Virudhunagar"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "27"] <- "Ramanathapuram"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "28"] <- "Thoothukudi"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "29"] <- "Tirunelveli Kattabo"
+d$District.ID [d$State.ID == "Tamil Nadu" & d$District.ID == "30"] <- "Kanniyakumari"
+
+d$State.ID [d$State.ID == "34"] <- "Puducherry"
+d$District.ID [d$State.ID == "Puducherry" & d$District.ID == "1"] <- "Yanam"
+d$District.ID [d$State.ID == "Puducherry" & d$District.ID == "2"] <- "Puducherry"
+d$District.ID [d$State.ID == "Puducherry" & d$District.ID == "3"] <- "Mahe"
+d$District.ID [d$State.ID == "Puducherry" & d$District.ID == "4"] <- "Karaikal"
+
+d$State.ID [d$State.ID == "35"] <- "Andaman and Nicobar"
+d$District.ID [d$State.ID == "Andaman and Nicobar" & d$District.ID == "1"] <- "Andaman Islands"
+d$District.ID [d$State.ID == "Andaman and Nicobar" & d$District.ID == "2"] <- "Nicobar Islands"
+
+write.csv (d, file="imd_states_name_26-35.csv")
+
+# The three re-organised IMD rainfall data files ("imd_states_name_1-10.csv", "imd_states_name_11-25.csv" and "imd_states_name_26-35.csv")
+# are combined by adding the rows vertically, and the resultant file is named "imd_states_name_1-35.csv".
+
+# Opening the combined IMD rainfall data file
+d <- read.csv ("imd_states_name_1-35.csv")
+View(d)
+
+# Re-organising the dataset to get monthly rainfall volumes for each district for each year-month combinations
+library(reshape2)
+dm <- melt(d, id = c('State.ID', 'District.ID', 'Year'))
+View(dm)
+
+# Generating monthly average rainfall for all districts for all years
+dm$Avg.Monthly.Rainfall <- with(dm, ave(value, State.ID, District.ID, Year))
+View(dm)
+
+# Keeping only one month ("January") per year, and removing all the rest
+d2 <- subset(dm, dm$variable == "January")
+d2$variable <- NULL
+d2$value <- NULL
+
+# Saving the file
+write.csv(d2, file = "imd_states_name_1-35_avg-monthly-rainfall.csv")
+
+# Generating a new dataframe containing the districts and their respective ten year (1901-1910) moving average rainfall 
+# for the year 1905
+library(plyr)
+r1 <- ddply(d2, .(District.ID), summarise, Ten.Year.Moving.Avg = mean(Avg.Monthly.Rainfall[Year > 1900 & Year < 1911]))
+r1$Year <- 1905
+View(r1)
+write.csv(r1, file = "imd_rainfall_10_year_MA_1905.csv")
+
+# Taking a subset for 1905 from the reorganised IMD rainfall data file
+r2 <- subset(d2, d2$Year == 1905)
+
+# Merging the 1905 subset of reorganised IMD rainfall data file
+# with the data file containing ten year moving averages for the same year
+m1 <- merge(r2, r, by.x = "District.ID", all.x = "TRUE", by.y = "District.ID")
+View(m1)
+
+# Generating a separate column with values equal to 75% of the ten year moving average for the district concerned
+m1$Ten.Year.Moving.Avg.75 <- with(m1, Ten.Year.Moving.Avg*0.75)
+View(m1)
+
+# Generating a column named *Drought* that takes the value "1" if average monthly rainfall is lesser than
+# the ten year moving average rainfall for the district concerned, and takes the value "0" otherwise
+m1$Drought <- 0
+m1$Drought [m1$Avg.Monthly.Rainfall < m1$Ten.Year.Moving.Avg.75] <- 1
+View(m1)
+
+# Checking if any district has experienced drought
+md <- subset(m1, m1$Drought == "1")
+View(md)
+
+# Loading GADM data of Indian administrative (district) boundaries
+library(sp)
+library(rgdal)
+i <- readOGR (dsn = "IND_adm/", layer = "IND_adm2")
+
+# Converting map data to a data frame (that can be used by ggplot2) using district names to identify each shape
+library(maptools)
+gpclibPermit()
+library(ggplot2)
+library(scales)
+m2 <- fortify(i, region = "NAME_2")
+
+# Drawing the map
+ggplot(m1, aes(map_id = District.ID)) + geom_map(aes(fill = Drought), map = m2) + expand_limits(x = m2$long, y = m2$lat) + scale_fill_gradient(low = "#dedede", high = "red", guide = FALSE) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white"), panel.grid.major = element_line(color = "white"), panel.grid.minor = element_line(color = "white")) + xlab("") + ylab("")
+
