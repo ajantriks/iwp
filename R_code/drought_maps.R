@@ -673,13 +673,24 @@ d$District.ID [d$State.ID == "Andaman and Nicobar" & d$District.ID == "2"] <- "N
 write.csv (d, file="imd_states_name_26-35.csv")
 
 # The three re-organised IMD rainfall data files ("imd_states_name_1-10.csv", "imd_states_name_11-25.csv" and "imd_states_name_26-35.csv")
-# are combined by adding the rows vertically, and the resultant file is named "imd_states_name_1-35.csv".
+# are combined and the resultant file is named "imd_states_name_1-35.csv".
+
+d1 <- read.csv("imd_states_1-10.csv")
+d2 <- read.csv("imd_states_11-25.csv")
+d3 <- read.csv("imd_states_26-35.csv")
+data <- rbind(d1,d2,d3)
+View(data)
+
+write.csv(data, file="imd_states_name_1-35.csv")
 
 # Opening the combined IMD rainfall data file
 d <- read.csv ("imd_states_name_1-35.csv")
 View(d)
 
 # Re-organising the dataset to get monthly rainfall volumes for each district for each year-month combinations
+# Please note that if the data table you are working with has a first column titled 'X', 
+# then please delete the column before running the 'melt' command by using this command: 'd$X <- NULL'. 
+
 library(reshape2)
 dm <- melt(d, id = c('State.ID', 'District.ID', 'Year'))
 View(dm)
