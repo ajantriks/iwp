@@ -720,7 +720,7 @@ r2 <- subset(d2, d2$Year == 1905)
 
 # Merging the 1905 subset of reorganised IMD rainfall data file
 # with the data file containing ten year moving averages for the same year
-m1 <- merge(r2, r, by.x = "District.ID", all.x = "TRUE", by.y = "District.ID")
+m1 <- merge(r2, r1, by.x = "District.ID", all.x = "TRUE", by.y = "District.ID")
 View(m1)
 
 # Generating a separate column with values equal to 75% of the ten year moving average for the district concerned
