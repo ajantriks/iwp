@@ -713,23 +713,28 @@
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,635.4725
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,622.124166666667</pre></code>
 	<p>This format is useful because it allows the *District.ID* value of a row to be used to link up the measurement of average monthly rainfall for a district (and for a year) to its corresponding district boundary shape (available from the Indian district boundaries data file). To enable this, the name of the districts must match between the rainfall data file and the district boundaries shapefile.</p>
-	
-	<p>To do this, the first IMD rainfall data file is converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then the state and district codes from the IMD rainfall data file is converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shapefile. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shapefile) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shapefile) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
-	<pre><code>d <- read.csv ("imd_states_1-10.csv")
+	<p>To do this, first IMD rainfall data files are converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then they are combined into a single file ("imd_states_name_1-35.csv") using the <code>rbind</code> command.</p>
+	<pre><code>d1 <- read.csv("imd_states_1-10.csv")
+d2 <- read.csv("imd_states_11-25.csv")
+d3 <- read.csv("imd_states_26-35.csv")
+data <- rbind(d1,d2,d3)
+View(data)
+
+write.csv(data, file="imd_states_name_1-35.csv")</pre></code>	
+	<p>Then the state and district codes from the IMD rainfall data file are converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shapefile. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shapefile) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shapefile) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
+	<pre><code>d <- read.csv ("imd_states_name_1-35.csv")
 
 d$State.ID [d$State.ID == "1"] <- "Jammu and Kashmir"
 
 d$District.ID [d$State.ID == "Jammu and Kashmir" & d$District.ID == "1"] <- "Kupwara (Muzaffarabad)"</code></pre>
 	<p>Once such replacing of the state and district codes by their corresponding names (spelt as in GADM district boundaries shapefile) is done, the data takes the following form:</p>
-	<pre><code>"State.ID","District.ID","Year","January","February","March","April","May","June","July","August","September","October","November","December"
+<pre><code>"State.ID","District.ID","Year","January","February","March","April","May","June","July","August","September","October","November","December"
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,398.24,331.86,563.32,757.26,944.61,802.88,1020.44,432.67,717.18,223.14,44.45,101.16
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,255.22,331.97,746.78,962.14,954.47,1116.03,910.09,688.77,542.22,434.55,523.79,159.64
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,607.9,589.12,692.71,594.51,830.91,817.7,1094.51,983.38,732.75,165.03,146.73,210.24</pre></code>
-	<p>All the three IMD rainfall data spreadsheets are converted to this form and unifed into a single .csv file, by adding the rows vertically. The combined rainfall data file is named "imd_states_name_1-35.csv"</p>
-	<p>Now the present structure of the table, where each row shows monthly rainfall counts for all months for a single year, needs to be changed to a structure where each rows gives the monthly rainfall in a district for an unique combination of year and month. This is done using the <code>melt</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Rehape2 package of R</a>, by converting the month columns ("January" to "December") into a single column that takes the months as its values.</p>
-	<pre><code>d <- read.csv ("imd_states_name_1-35.csv")
-	
-library(reshape2)
+	<p>Now the present structure of the table, where each row shows monthly rainfall counts for all months for a single year, needs to be changed to a structure where each rows gives the monthly rainfall in a district for an unique combination of year and month. This is done using the <code>melt</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Reshape2 package of R</a>, by converting the month columns ("January" to "December") into a single column that takes the months as its values.</p>
+	<p>Please note that if the data table you are working with has a first column titled 'X', then please delete the column before running the <code>melt</code> command by using this command: <code>d$X <- NULL</code>. 
+	<pre><code>library(reshape2)
 dm <- melt(d, id = c('State.ID', 'District.ID', 'Year'))</code></pre>
 	<p>This converts the data to the following format:</p>
 	<pre><code>"State.ID","District.ID","Year","variable","value"
