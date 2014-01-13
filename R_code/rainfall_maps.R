@@ -674,7 +674,17 @@ d$District.ID [d$State.ID == "Andaman and Nicobar" & d$District.ID == "2"] <- "N
 write.csv (d, file="imd_states_name_26-35.csv")
 
 # The three re-organised IMD rainfall data files ("imd_states_name_1-10.csv", "imd_states_name_11-25.csv" and "imd_states_name_26-35.csv")
-# are combined by adding the rows vertically, and the resultant file is named "imd_states_name_1-35.csv".
+# are combined and the resultant file is named "imd_states_name_1-35.csv".
+
+d1 <- read.csv("imd_states_1-10.csv")
+d2 <- read.csv("imd_states_11-25.csv")
+d3 <- read.csv("imd_states_26-35.csv")
+data <- rbind(d1,d2,d3)
+View(data)
+
+write.csv(data, file="imd_states_name_1-35.csv")
+
+# If there is a column titled 'X' in the data file, remove it using this command: 'd$X <- NULL'
 
 # Opening the combined IMD rainfall data file
 d <- read.csv ("imd_states_name_1-35.csv")
@@ -689,13 +699,16 @@ View(dm)
 dm$Avg.Monthly.Rainfall <- with(dm, ave(value, State.ID, District.ID, Year))
 View(dm)
 
-# Keeping only one month ("January") per year, and removing all the rest
+# Generating annual (aggregate) rainfall for all districts for all years
+dm$Annual.Rainfall <- with(dm, Avg.Monthly.Rainfall * 12)
+View(dm)
+
+# Keeping only one month ("January") per year, removing all the rest, and saving the final data file
 d2 <- subset(dm, dm$variable == "January")
 d2$variable <- NULL
 d2$value <- NULL
-
-# Saving the file
-write.csv(d2, file = "imd_states_name_1-35_avg-monthly-rainfall.csv")
+d2$Avg.Monthly.Rainfall <- NULL
+write.csv(d2, file = "imd_states_name_1-35_annual-rainfall.csv")
 
 # Loading GADM data of Indian administrative (district) boundaries
 library(sp)
@@ -710,12 +723,14 @@ library(scales)
 m <- fortify(i, region = "NAME_2")
 
 # Opening the revised IMD data file
-d <- read.csv ("imd_states_name_1-35_avg-monthly-rainfall.csv")
+d <- read.csv ("imd_states_name_1-35_annual-rainfall.csv")
 View(d)
+
+# If there is a column titled 'X' in the data file, remove it using this command: 'd$X <- NULL'
 
 # Taking the subset of IMD data for 1901
 d1901 <- subset (d, d$Year == "1901")
 
 # Draw the map
-ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Avg.Monthly.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#00FFFF", high = "#0000C8", space = "Lab", limits = c(0, 1150), breaks = c(0, 250, 500, 750, 1000, 1150)) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Rainfall\n(mm)\n", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")
+ggplot(d1901, aes(map_id = District.ID)) + geom_map(aes(fill = Annual.Rainfall), map = m) + expand_limits(x = m$long, y = m$lat) + scale_fill_gradient(low = "#00FFFF", high = "#0000C8", space = "Lab", limits = c(0, 14000), breaks = c(0, 3000, 6000, 9000, 12000, 14000)) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white")) + guides(fill = guide_colorbar(title = "Annual Rainfall\n(mm)\n", title.theme = element_text(colour = "#444444", size = "40", angle = 0), barwidth = 2, barheight = 30, label.theme = element_text(colour = "#444444", size = "38", angle = 0))) + xlab("") + ylab("")
 
