@@ -114,8 +114,7 @@
 			</ul>
 		</li>
 	</ul>
-	<br />
-	<iframe src="motion_charts/rainfall_ground_water_motion_charts_india.html" width=1000px height=500px frameborder=0>
+	<iframe src="motion_charts/rainfall_ground_water_motion_charts_india.html" width=1100px height=550px frameborder=0>
 	</iframe>
 	<br />
 	<h4>Documentation:</h4>
@@ -195,7 +194,7 @@ colnames(m2)[8] <- "Month"
 colnames(m2)[9] <- "Day"
 View(m2)
 
-write.csv(m2, file = "rainfall_ground-water_motion-chart_data.csv")</pre></code>
+write.csv(m2, file = "rainfall_ground_water_motion_charts_data.csv")</pre></code>
 	<p>As both the *Monthly.Rainfall* and *Groundwater.Level* columns take the value "0" several times to indicate both zero rainfall and not available data for the month concerned, rows with all "0" values (for either *Monthly.Rainfall* or *Groundwater.Level* column) are dropped so that the Motion Chart does not display sudden and misleading movements of the points to the zero point of the axis.</p>
 	<pre><code>m$Drop <- 0
 m$Drop[m$Monthly.Rainfall == 0] <- 1
