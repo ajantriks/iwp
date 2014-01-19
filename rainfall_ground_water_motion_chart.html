@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rainfall and Groundwater Motion Charts | Visualising Water Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visualising Water Data for India Water Portal">
+    <meta name="author" content="ajantriks">
+
+    <!-- Google Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Bitter|Open+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS -->
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+    <!-- Lightbox -->
+    <script src="lib/lightbox/js/jquery-1.7.2.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.js"></script>
+
+    <link href="lib/lightbox/css/lightbox.css" rel="stylesheet" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="lib/bootstrap/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="lib/highlight.js/styles/github.css">
+    <script src="lib/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="brand">Visualising Water Data</div>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class=""><a href="index.html">Home</a></li>
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualisations <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="drought_maps.html">Drought Maps</a></li>
+                  <li><a href="ground_water.html">Ground Water Charts</a></li>
+                  <li><a href="kausani_rainfall.html">Kausani Rainfall Charts</a></li>
+                  <li><a href="rainfall_ground_water_motion_charts.html">Rainfall and Ground Water Motion Charts</a></li>		
+                  <li><a href="rainfall_maps.html">Rainfall Maps</a></li>
+                </ul>
+              </li>
+	    </ul>
+	  </div>
+	  <div class="navbar-inner pull-right">
+	    <ul class="nav">
+	      <li><a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a></li>
+              <li><a href="http://www.ajantriks.net/" target="_blank">ajantriks</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <h3>Rainfall and Ground Water Motion Charts</h3>
+	<p>These Motion Charts visualise the monthly (aggregate) rainfall and ground water levels across the districts of India, for the period 2005 to 2009. Both the rainfall and ground water data sets are sourced from <a href="http://www.imd.gov.in/" target="_blank">India Meteorological Department</a> (IMD) The Motion Chart is generates using the <a href="https://developers.google.com/chart/interactive/docs/gallery/motionchart?csw=1" target="_blank">Google Charts</a> library and the <a href="http://cran.r-project.org/web/packages/googleVis/index.html" target="_blank">googleVis library of R</a>.</p>
+	<br />
+	<h4>Charts:</h4>
+	<p><strong>How to use:</strong> Click on the drop down menu to select between *All India* and state-specific charts.</p>
+	<p><strong>Legends:</strong> As mentioned within the charts.</p>
+	<p><strong>Note on rainfall data:</strong> The rainfall data available from IMD does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. Further, both rainfall and ground water data might not always be available for all districts. The charts display only the districts that is featured on both the data sets.</p> 
+	<br />
+	<div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		Select a region
+		<span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+	    			<li><a href="">All India</a></li>
+	    			<li><a href="">Andaman and Nicobar</a></li>
+	    			<li><a href="">Assam</a></li>
+			</ul>
+	</div>
+	<ul class="nav nav-pills">
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Select a region
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu">
+	    			<li><a href="">All India</a></li>
+	    			<li><a href="">Andaman and Nicobar</a></li>
+	    			<li><a href="">Assam</a></li>
+			</ul>
+		</li>
+	</ul>
+	<br />
+	<iframe src="motion_charts/rainfall_ground_water_motion_charts_india.html" width=1000px height=500px frameborder=0>
+	</iframe>
+	<br />
+	<h4>Documentation:</h4>
+	<br />
+	<p>The original IMD rainfall data for 1904-2010 comes in a MS Excel spreadsheet file, with data for each state given in a separate sheet. Before beginning work, all these sheets are combined by saving each sheet as a separate <code>.csv</code> file and appending all these files using the following code.</p>
+	<pre><code>d01 <- read.csv("imd_2004-2010_01.csv")
+d02 <- read.csv("imd_2004-2010_02.csv")
+.
+.
+.
+dn <- read.csv("imd_2004-2010_n.csv")
+data <- rbind(d01,d02,...,dn)
+View(data)
+write.csv(data, file = "imd_rainfall_2004-2010_01.csv")</pre></code>
+	<p>The combined IMD rainfall data file is opened, and all the month columns are reorganised into a two-columns format with each month (for each year) and corresponding rainfall value.</p>
+	<pre><code>r <- read.csv("imd_rainfall_2004-2010_01.csv")
+View(r)
+
+library(reshape2)
+rm <- melt(r, id = c('State', 'District', 'Year'))
+View(rm)</pre></code>
+	<p>A *Month* variable with numeric value for each month, instead of alphabetical values.</p>
+	<pre><code>rm$Month[rm$variable == "January"] <- "01"
+rm$Month[rm$variable == "February"] <- "02"
+rm$Month[rm$variable == "March"] <- "03"
+rm$Month[rm$variable == "April"] <- "04"
+rm$Month[rm$variable == "May"] <- "05"
+rm$Month[rm$variable == "June"] <- "06"
+rm$Month[rm$variable == "July"] <- "07"
+rm$Month[rm$variable == "August"] <- "08"
+rm$Month[rm$variable == "September"] <- "09"
+rm$Month[rm$variable == "October"] <- "10"
+rm$Month[rm$variable == "November"] <- "11"
+rm$Month[rm$variable == "December"] <- "12"
+View(rm)</pre></code>
+	<p>A *Day* column is created with uniform value of "01". A *Date* column is generated by combining the values of *Day*, *Month*, and *Year* columns, and it is formatted into standard date format of R. Finally, the resultant data file is saved for usage later.</p>
+	<pre><code>rm$Day <- 01
+View(rm)
+
+rm$Date <- paste(rm$Day, rm$Month, rm$Year, sep = "-")
+rm$Date <- as.Date(rm$Date, format = "%d-%m-%Y")
+View(rm)
+
+write.csv(rm, file = "imd_rainfall_2004-2010_02.csv")</pre></code>
+	<p>Although, both the rainfall and the ground water data sets are sourced from IMD, sometimes they contain different spellings and formats of writing the district names. Hence, the re-organised IMD rainfall data file and the ground water files are separately opened, and the district names across both the files are standardised. Afterwards, both the files are opened on R.</p>
+	<p>The "ground_water_india_2005-09_02" file is the district-name-standardised (with the rainfall data file) version of the "<a href="https://github.com/ajantriks/iwp/blob/master/data/ground_water_india_2005-09_no_zero.csv" target="_blank">ground_water_india_2005-09_no_zero</a>" file, as created while generating the <a href="ground_water.html" target="_blank" >ground water charts</a>. To see how the "ground_water_india_2005-09_no_zero" file was created, please refer to the <a href="ground_water.html" target="_blank" >ground water charts</a> documentation.</p>
+	<pre><code>r <- read.csv("imd_rainfall_2004-2010_02.csv")
+g <- read.csv("ground_water_india_2005-09_02.csv")</pre></code>
+	<p>Now the two data tables need to be merged before they can be represented as a Motion Chart. To do so, first the date columns are standardised, and then a new column called *ID* is generated by pasting together the district name and the date for each row. Then the data tables are merged using the *ID* column as the unique identifier.</p>
+	<pre><code>r$Date <- as.Date(r$Date, format = "%Y-%m-%d")
+g$Date <- as.Date(g$Date, format = "%Y/%m/%d")
+r$ID <- paste(r$District, r$Date, sep = "-")
+g$ID <- paste(g$District, g$Date, sep = "-")
+View(r)
+View(g)
+
+m <- merge(r, g, by.x = "ID", all.x = "TRUE", by.y = "ID")
+View(m)</pre></code>
+	<p>As the rainfall data is for the years 2004-2010 and the ground water data is for the year 2005-2009, all rows corresponding to the years 2004 and 2010 are dropped.</p>
+	<pre><code>m$Drop <- 0
+m$Drop[m$Year.x == 2004] <- 1
+m$Drop[m$Year.x == 2010] <- 1
+ms <- subset(m, m$Drop == 0)
+View(ms)</pre></code>
+	<p>A new data table is created with only the required columns, the columns are renamed, and the table is saved.</p>
+	<pre><code>m2 <- data.frame(ms$State.x, ms$District.x, ms$Date.x, ms$value, ms$Ground_Water_Level, ms$Year.x, ms$variable, ms$Month, ms$Day)
+View(m2)
+
+colnames(m2)[1] <- "State"
+colnames(m2)[2] <- "District"
+colnames(m2)[3] <- "Date"
+colnames(m2)[4] <- "Monthly.Rainfall"
+colnames(m2)[5] <- "Groundwater.Level"
+colnames(m2)[6] <- "Year"
+colnames(m2)[7] <- "Month.Name"
+colnames(m2)[8] <- "Month"
+colnames(m2)[9] <- "Day"
+View(m2)
+
+write.csv(m2, file = "rainfall_ground-water_motion-chart_data.csv")</pre></code>
+	<p>As both the *Monthly.Rainfall* and *Groundwater.Level* columns take the value "0" several times to indicate both zero rainfall and not available data for the month concerned, rows with all "0" values (for either *Monthly.Rainfall* or *Groundwater.Level* column) are dropped so that the Motion Chart does not display sudden and misleading movements of the points to the zero point of the axis.</p>
+	<pre><code>m$Drop <- 0
+m$Drop[m$Monthly.Rainfall == 0] <- 1
+m$Drop[m$Groundwater.Level == 0] <- 1
+View(m)
+m2 <- subset(m, m$Drop == 0)
+View(m2)
+m2$Drop <- NULL</pre></code>
+	<p>The Motion Chart is generated using the <a href="http://cran.r-project.org/web/packages/googleVis/index.html" target="_blank">googleVis library of R</a> and the <a href="https://developers.google.com/chart/interactive/docs/gallery/motionchart?csw=1" target="_blank">Google Charts</a> library.</p>
+	<pre><code>c <- gvisMotionChart(m2, idvar="District", timevar="Date")
+print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
+
+	<p></p>
+	<pre><code></pre></code>
+
+	<p></p>
+	<pre><code></pre></code>
+	<br />
+	<h4>Code and Data:</h4>
+	<br />
+	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="https://github.com/ajantriks/iwp/blob/master/R_code/rainfall_maps.R" target="_blank">from here</a>.</p>
+	<p>Data (reorganised from the original data shared by IMD) used to create the above charts can also be downloaded <a href="https://github.com/ajantriks/iwp/blob/master/data/imd_states_name_1-35_avg-monthly-rainfall.csv" target="_blank">from here</a>.</p>
+	<br />
+	<h4>Credits and License:</h4>
+	<br />
+	<p>Created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> for <a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a>.</p>
+	<p>All visualisations are developed using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
+	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
+	<p>Code for all the visualisations is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
+	<p>Code (but not data) is shared under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
+	<p>Reorganised <a href="https://github.com/ajantriks/iwp/tree/master/data" target="_blank">data</a> has been shared only for the purpose of checking and validating the charts and maps.</p>
+	<p>It is necessary to take required permission from the original creator of data before re-using it.</p>	
+	<p><strong>Note: Please link back to this page while sharing or re-using this work.</strong></p>
+	<br />
+	<br />
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="lib/bootstrap/js/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
+
+  </body>
+</html>
