@@ -94,11 +94,40 @@
 	<p><strong>Note on rainfall data:</strong> The rainfall data available from IMD does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. Further, both rainfall and ground water data might not always be available for all districts. The charts display only the districts that is featured on both the data sets.</p> 
 	<br />
 	<select id="e1">
-		<option value="ALL">All India</option>
-		<option value="AAN">Andaman and Nicobar</option>
-		<option value="ASS">Assam</option>
+		<option value="ind">All India</option>
+		<option value="and">Andhra Pradesh</option>
+		<option value="aru">Arunachal Pradesh</option>
+		<option value="ass">Assam</option>
+		<option value="bih">Bihar</option>
+		<option value="cha">Chandigarh</option>
+		<option value="chh">Chhattisgarh</option>
+		<option value="dad">Dadra and Nagar Haveli</option>
+		<option value="del">Delhi</option>
+		<option value="goa">Goa</option>
+		<option value="guj">Gujarat</option>
+		<option value="har">Haryana</option>
+		<option value="him">Himachal Pradesh</option>
+		<option value="jam">Jammu and Kashmir</option>
+		<option value="jha">Jharkhand</option>
+		<option value="kar">Karnataka</option>
+		<option value="ker">Kerala</option>
+		<option value="mad">Madhya Pradesh</option>
+		<option value="mah">Maharashtra</option>
+		<option value="man">Manipur</option>
+		<option value="meg">Meghalaya</option>
+		<option value="miz">Mizoram</option>
+		<option value="nag">Nagaland</option>
+		<option value="ori">Orissa</option>
+		<option value="pun">Punjab</option>
+		<option value="raj">Rajasthan</option>
+		<option value="sik">Sikkim</option>
+		<option value="tam">Tamil Nadu</option>
+		<option value="tri">Tripura</option>
+		<option value="utp">Uttar Pradesh</option>
+		<option value="utt">Uttarakhand</option>
+		<option value="wbe">West Bengal</option>
 	</select>
-	<iframe src="motion_charts/rainfall_ground_water_motion_charts_india.html" width=1100px height=550px frameborder=0>
+	<iframe src="motion_charts/rainfall_ground_water_motion_charts_ind.html" width=100% height=550px frameborder=0>
 	</iframe>
 	<br />
 	<h4>Documentation:</h4>
@@ -204,7 +233,7 @@ print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
 	<br />
 	<h4>Credits and License:</h4>
 	<br />
-	<p>Created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> for <a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a>.</p>
+	<p>Created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> for <a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a>. Thanks to <a href="http://sajjad.in">geohacker</a> for the JS help.</p>
 	<p>All visualisations are developed using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
 	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
 	<p>Code for all the visualisations is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
@@ -222,6 +251,19 @@ print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
     <script src="lib/bootstrap/js/jquery.js"></script>
     <script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
     <script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
-
+    <script>
+	$(document).ready(function() { $("#e1").select2(); });
+	$('#e1').on('change', function(e) {loadMotionChart(e.val);});
+	function loadMotionChart(state) {
+		state = state.toLowerCase();
+		if (state=='ind')
+			{
+				$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_charts_ind.html');
+	 		}
+		else {	
+			$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_charts_'+state+'.html');
+	 	};
+	 }
+    </script>
   </body>
 </html>
