@@ -24,9 +24,6 @@
     <script src="lib/bootstrap/js/jquery.js"></script>
     <link href="lib/select2-3.4.5/select2.css" rel="stylesheet"/>
     <script src="lib/select2-3.4.5/select2.js"></script>
-    <script>
-	 $(document).ready(function() { $("#e1").select2(); });
-    </script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -93,7 +90,7 @@
 	<p><strong>Legends:</strong> As mentioned within the charts.</p>
 	<p><strong>Note on rainfall data:</strong> The rainfall data available from IMD does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. Further, both rainfall and ground water data might not always be available for all districts. The charts display only the districts that is featured on both the data sets.</p> 
 	<br />
-	<select id="e1">
+	<select id="e1" style="width:220px">
 		<option value="ind">All India</option>
 		<option value="and">Andhra Pradesh</option>
 		<option value="aru">Arunachal Pradesh</option>
@@ -127,7 +124,7 @@
 		<option value="utt">Uttarakhand</option>
 		<option value="wbe">West Bengal</option>
 	</select>
-	<iframe src="motion_charts/rainfall_ground_water_motion_charts_ind.html" width=100% height=550px frameborder=0>
+	<iframe id="motionchart" src="motion_charts/rainfall_ground_water_motion_charts_ind.html" width=100% height=550px frameborder=0>
 	</iframe>
 	<br />
 	<h4>Documentation:</h4>
@@ -248,14 +245,11 @@ print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="lib/bootstrap/js/jquery.js"></script>
     <script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
     <script>
 	$(document).ready(function() { $("#e1").select2(); });
 	$('#e1').on('change', function(e) {loadMotionChart(e.val);});
 	function loadMotionChart(state) {
-		state = state.toLowerCase();
 		if (state=='ind')
 			{
 				$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_charts_ind.html');
