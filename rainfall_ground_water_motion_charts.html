@@ -88,7 +88,8 @@
 	<h4>Charts:</h4>
 	<p><strong>How to use:</strong> Click on the drop down menu to select between *All India* and state-specific charts.</p>
 	<p><strong>Legends:</strong> As mentioned within the charts.</p>
-	<p><strong>Note on rainfall data:</strong> The rainfall data available from IMD does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. Further, both rainfall and ground water data might not always be available for all districts. The charts display only the districts that is featured on both the data sets.</p> 
+	<p><strong>Note on rainfall and ground water data:</strong> The rainfall data available from IMD does not provide measurements for several districts, such as Ashoknagar, Annupur and Burhanpur in Madhya Pradesh, and Bongaigaon and Marigaon in Assam. Further, both rainfall and ground water data might not always be available for all districts. The charts display only the districts that is featured on both the data sets. The states of <strong>Goa</strong>, <strong>Manipur</strong>, <strong>Mizoram</strong>, and <strong>Sikkim</strong> have no months during 2005-2009 where both monthly rainfall and ground water level take a non-zero value.</p>
+	<p><strong>Note on rainfall and ground water data:</strong>
 	<br />
 	<select id="e1" style="width:220px">
 		<option value="ind">All India</option>
@@ -98,13 +99,11 @@
 		<option value="bih">Bihar</option>
 		<option value="cha">Chandigarh</option>
 		<option value="chh">Chhattisgarh</option>
-		<option value="dad">Dadra and Nagar Haveli</option>
-		<option value="del">Delhi</option>
-		<option value="goa">Goa</option>
+		<option value="dnh">Dadra and Nagar Haveli</option>
 		<option value="guj">Gujarat</option>
 		<option value="har">Haryana</option>
 		<option value="him">Himachal Pradesh</option>
-		<option value="jam">Jammu and Kashmir</option>
+		<option value="jak">Jammu and Kashmir</option>
 		<option value="jha">Jharkhand</option>
 		<option value="kar">Karnataka</option>
 		<option value="ker">Kerala</option>
@@ -124,7 +123,7 @@
 		<option value="utt">Uttarakhand</option>
 		<option value="wbe">West Bengal</option>
 	</select>
-	<iframe id="motionchart" src="motion_charts/rainfall_ground_water_motion_charts_ind.html" width=100% height=550px frameborder=0>
+	<iframe id="motionchart" src="motion_charts/rainfall_ground_water_motion_chart_ind.html" width=100% height=550px frameborder=0>
 	</iframe>
 	<br />
 	<h4>Documentation:</h4>
@@ -225,8 +224,8 @@ print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
 	<br />
 	<h4>Code and Data:</h4>
 	<br />
-	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="https://github.com/ajantriks/iwp/blob/master/R_code/rainfall_maps.R" target="_blank">from here</a>.</p>
-	<p>Data (reorganised from the original data shared by IMD) used to create the above charts can also be downloaded <a href="https://github.com/ajantriks/iwp/blob/master/data/imd_states_name_1-35_avg-monthly-rainfall.csv" target="_blank">from here</a>.</p>
+	<p>The entire R code (as given in the documentation) for this visualisation can be downloaded <a href="https://github.com/ajantriks/iwp/blob/master/R_code/rainfall_ground_water_motion_charts.R" target="_blank">from here</a>.</p>
+	<p>Data (reorganised from the original data shared by IMD) used to create the above charts can also be downloaded <a href="https://github.com/ajantriks/iwp/tree/master/data/rainfall_ground_water_motion_charts" target="_blank">from here</a>.</p>
 	<br />
 	<h4>Credits and License:</h4>
 	<br />
@@ -252,10 +251,10 @@ print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
 	function loadMotionChart(state) {
 		if (state=='ind')
 			{
-				$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_charts_ind.html');
+				$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_chart_ind.html');
 	 		}
 		else {	
-			$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_charts_'+state+'.html');
+			$('#motionchart').attr('src', 'motion_charts/rainfall_ground_water_motion_chart_'+state+'.html');
 	 	};
 	 }
     </script>
