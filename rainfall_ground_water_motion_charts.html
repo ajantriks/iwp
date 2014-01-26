@@ -212,12 +212,12 @@ m2$Drop <- NULL</pre></code>
 	<p>The Motion Chart is generated using the <a href="http://cran.r-project.org/web/packages/googleVis/index.html" target="_blank">googleVis library of R</a> and the <a href="https://developers.google.com/chart/interactive/docs/gallery/motionchart?csw=1" target="_blank">Google Charts</a> library.</p>
 	<pre><code>c <- gvisMotionChart(m2, idvar="District", timevar="Date")
 print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
+	<p>To generating motion chart for specific states, first take a state-specific subset of the entire data and then generate motion chart for only the subset concerned.</p>
+	<pre><code>m2 <- subset(m, m$State == "Andhra Pradesh")
+View(m2)
 
-	<p></p>
-	<pre><code></pre></code>
-
-	<p></p>
-	<pre><code></pre></code>
+c <- gvisMotionChart(m, idvar="District", timevar="Date")
+print(c, file = "rainfall_ground_water_motion_chart_and.html")</pre></code>
 	<br />
 	<h4>Code and Data:</h4>
 	<br />
@@ -228,7 +228,7 @@ print(c, file = "rainfall_ground-water_motion-chart_02.html")</pre></code>
 	<br />
 	<p>Created by <a href="http://www.ajantriks.net/" target="_blank">ajantriks</a> for <a href="http://indiawaterportal.org/" target="_blank">India Water Portal</a>. Thanks to <a href="http://sajjad.in">geohacker</a> for the JS help.</p>
 	<p>All visualisations are developed using <a href="http://cran.r-project.org/" target="_blank">R</a>.</p>
-	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank">Lightbox</a>.</p>
+	<p>Pages written using <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>, <a href="http://www.google.com/webfonts/" target="_blank">Google Web Fonts</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/" target="_blank">Highlight.js</a> and <a href="http://ivaynberg.github.io/select2/" target="_blank">Select2</a>.</p>
 	<p>Code for all the visualisations is available on <a href="https://github.com/ajantriks/iwp" target="_blank">GitHub</a>.</p>
 	<p>Code (but not data) is shared under Creative Commons <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">Attribution-ShareAlike 3.0 Unported</a> license.</p>
 	<p>Reorganised <a href="https://github.com/ajantriks/iwp/tree/master/data" target="_blank">data</a> has been shared only for the purpose of checking and validating the charts and maps.</p>

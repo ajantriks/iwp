@@ -91,7 +91,7 @@ View(m2)
 
 write.csv(m2, file = "rainfall_ground_water_motion_charts_data.csv")
 
-# Generating the motion chart (including zero values for rainfall and groundwater level)
+# Generating motion chart (including zero values for rainfall and groundwater level)
 
 m <- read.csv("rainfall_ground-water_motion-chart_data.csv")
 m$X <- NULL
@@ -103,9 +103,9 @@ View(m)
 
 library(googleVis)
 c <- gvisMotionChart(m, idvar="District", timevar="Date")
-print(c, file = "rainfall_ground-water_motion-chart.html")
+print(c, file = "rainfall_ground_water_motion_chart_01.html")
 
-# Generating the motion chart (excluding zero values for rainfall and groundwater level)
+# Generating motion chart (excluding zero values for rainfall and groundwater level)
 
 m$Drop <- 0
 m$Drop[m$Monthly.Rainfall == 0] <- 1
@@ -115,4 +115,11 @@ m2 <- subset(m, m$Drop == 0)
 View(m2)
 m2$Drop <- NULL
 c2 <- gvisMotionChart(m2, idvar="District", timevar="Date")
-print(c2, file = "rainfall_ground-water_motion-chart_02.html")
+print(c2, file = "rainfall_ground_water_motion_chart_02.html")
+
+# Generating motion chart for specific states
+
+m2 <- subset(m, m$State == "Andhra Pradesh")
+View(m2)
+c <- gvisMotionChart(m, idvar="District", timevar="Date")
+print(c, file = "rainfall_ground_water_motion_chart_and.html")
