@@ -755,14 +755,21 @@
 1,1,1901,398.24,331.86,563.32,757.26,944.61,802.88,1020.44,432.67,717.18,223.14,44.45,101.16
 1,1,1902,255.22,331.97,746.78,962.14,954.47,1116.03,910.09,688.77,542.22,434.55,523.79,159.64
 1,1,1903,607.9,589.12,692.71,594.51,830.91,817.7,1094.51,983.38,732.75,165.03,146.73,210.24</pre></code>
-	<p>To use this data along with the Indian district boundaries datset from <a href="http://gadm.org/" target="_blank">GADM</a>, it needs to be re-organised in the following format, where each row gives the monthly average rainfall (for the year concerned) for a specific district for a specific year:</p>
-	<pre><code>"State.ID","District.ID","Year","Avg.Monthly.Rainfall"
-"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,528.100833333333
-"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,635.4725
-"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,622.124166666667</pre></code>
-	<p>This format is useful because it allows the *District.ID* value of a row to be used to link up the measurement of average monthly rainfall for a district (and for a year) to its corresponding district boundary shape (available from the Indian district boundaries data file). To enable this, the name of the districts must match between the rainfall data file and the district boundaries shapefile.</p>
-	
-	<p>To do this, the first IMD rainfall data file is converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then the state and district codes from the IMD rainfall data file is converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shapefile. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shapefile) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shapefile) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
+	<p>To use this data along with the Indian district boundaries datset from <a href="http://gadm.org/" target="_blank">GADM</a>, it needs to be re-organised in the following format, where each row gives the annual (aggregate) rainfall (for the year concerned) for a specific district for a specific year:</p>
+	<pre><code>"State.ID","District.ID","Year","Annual.Rainfall"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,6337.21
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,7625.67
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,7465.49</pre></code>
+	<p>This format is useful because it allows the *District.ID* value of a row to be used to link up the count of annual (aggregate) rainfall for a district (and for a year) to its corresponding district boundary shape (available from the Indian district boundaries data file). To enable this, the name of the districts must match between the rainfall data file and the district boundaries shapefile.</p>	
+	<p>To do this, first IMD rainfall data files are converted from MS Excel spreadsheet format to .csv (Comma Separated Value) format, and read into R using the <code>read.csv</code> command. Then they are combined into a single file ("imd_states_name_1-35.csv") using the <code>rbind</code> command.</p>
+	<pre><code>d1 <- read.csv("imd_states_1-10.csv")
+d2 <- read.csv("imd_states_11-25.csv")
+d3 <- read.csv("imd_states_26-35.csv")
+data <- rbind(d1,d2,d3)
+View(data)
+
+write.csv(data, file="imd_states_name_1-35.csv")</pre></code> 
+	<p>Then the state and district codes from the IMD rainfall data file is converted to their respective names, by following the spellings of those state and district names as given in the GADM district boundaries shapefile. The second line below replace the values of *State.ID* by "Jammu and Kashmir" (spelt as in GADM district boundaries shapefile) if the present value is "1". The third line below replace the values of *District.ID* by "Kupwara (Muzaffarabad)" (spelt as in GADM district boundaries shapefile) if the present value is "1" and the corresponding *District.ID* value is "Jammu and Kashmir".</p>
 	<pre><code>d <- read.csv ("imd_states_1-10.csv")
 
 d$State.ID [d$State.ID == "1"] <- "Jammu and Kashmir"
@@ -781,7 +788,7 @@ data <- rbind(d1,d2,d3)
 View(data)
 
 write.csv(data, file="imd_states_name_1-35.csv")</code></pre>	
-	<p>Now the present structure of the table, where each row shows monthly rainfall counts for all months for a single year, needs to be changed to a structure where each rows gives the monthly rainfall in a district for an unique combination of year and month. This is done using the <code>melt</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Rehape2 package of R</a>, by converting the month columns ("January" to "December") into a single column that takes the months as its values.</p>
+	<p>Now the present structure of the table, where each row shows monthly rainfall counts for all months for a single year, needs to be changed to a structure where each rows gives the annual (aggregate) rainfall in a district for an unique combination of year and month. This is done using the <code>melt</code> command from the <a href="http://cran.r-project.org/web/packages/reshape2/" target="_blank">Rehape2 package of R</a>, by converting the month columns ("January" to "December") into a single column that takes the months as its values.</p>
 	<pre><code>d <- read.csv ("imd_states_name_1-35.csv")
 	
 library(reshape2)
@@ -791,24 +798,25 @@ dm <- melt(d, id = c('State.ID', 'District.ID', 'Year'))</code></pre>
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,"January",398.24
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,"January",255.22
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,"January",607.9</pre></code>
-	<p>But this gives the volume of rainfall for each district for each month (for each year), and not the average monthly rainfall for each district (for each year) that we need to generate the maps concerned.</p>
-	<p>The following command generates this average monthly rainfall for each district (for each year),by taking the average of *value* for all rows with unique combinations of *State.ID*, *District.ID* and Year.</p>
-	<pre><code>dm$Avg.Monthly.Rainfall <- with(dm, ave(value, State.ID, District.ID, Year))</pre></code>
+	<p>But this gives the volume of rainfall for each district for each month (for each year), and not the annual (aggregate) rainfall for each district (for each year) that we need to generate the maps concerned.</p>
+	<p>The following commands generate this annual (aggregate) rainfall for each district (for each year), by taking the average of *value* for all rows with unique combinations of *State.ID*, *District.ID* and *Year*, and multiplying it by "12".</p>
+	<pre><code>dm$Avg.Monthly.Rainfall <- with(dm, ave(value, State.ID, District.ID, Year))
+dm$Annual.Rainfall <- with(dm, Avg.Monthly.Rainfall * 12)</pre></code>
 	<p>This converts the data to the following format:</p>
-	<pre><code>"State.ID","District.ID","Year","variable","value","Avg.Monthly.Rainfall"
-"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,"January",398.24,528.100833333333
-"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,"January",255.22,635.4725
-"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,"January",607.9,622.124166666667</code></pre>
-	<p>However, generating the rainfall maps will require aggregate annual rainfall for the districts for each year. So *Avg.Monthly.Rainfall* variable is multiplied by "12" to obtain the *Annual.Rainfall* variable.</p>
-	<pre><code>dm$Annual.Rainfall <- with(dm, Avg.Monthly.Rainfall * 12)</pre></code>
-		<p>The resultant data file still has separate rows for all the months of each year. Since, the annual (aggregate) rainfall for each year have already been generated, there is no need for these rows for separate months. The first line below takes a subset of the data with only rows for the month of "January" (for all years); and the next lines respectively remove the variables *variable*, *value*, and *Avg.Monthly.Rainfall*, which are not needed anymore.</p>
-		<pre><code>d2 <- subset(dm, dm$variable == "January")
+	<pre><code>"State.ID","District.ID","Year","variable","value","Avg.Monthly.Rainfall","Annual.Rainfall"
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,"January",398.24,528.100833333333,6337.21
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1902,"January",255.22,635.4725,7625.67
+"Jammu and Kashmir","Kupwara (Muzaffarabad)",1903,"January",607.9,622.124166666667,7465.49</code></pre>
+	<p>The reformatted data table is saved.</p>
+	<pre><code>write.csv(dm, file = "imd_states_name_1-35_annual-rainfall.csv")</code></pre>
+	<p>The resultant data file still has separate rows for all the months of each year. Since, the annual (aggregate) rainfall for each year have already been generated, there is no need for these rows for separate months. The first line below takes a subset of the data with only rows for the month of "January" (for all years); and the next lines remove the variables that are not needed anymore and save the data table again.</p>
+	<pre><code>d2 <- subset(dm, dm$variable == "January")
 
 d2$variable <- NULL
 d2$value <- NULL
 d2$Avg.Monthly.Rainfall <- NULL
 
-write.csv(d2, file = "imd_states_name_1-35_annual-rainfall.csv")</code></pre>
+write.csv(d2, file = "imd_states_name_1-35_annual-rainfall-edited.csv")</code></pre>
 	<p>Now we have the data in the following format, and it is ready for mapping:</p>
 	<pre><code>"State.ID","District.ID","Year","Annual.Rainfall"
 "Jammu and Kashmir","Kupwara (Muzaffarabad)",1901,6337.21
