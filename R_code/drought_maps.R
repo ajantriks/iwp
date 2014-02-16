@@ -688,6 +688,7 @@ d <- read.csv ("imd_states_name_1-35.csv")
 View(d)
 
 # Re-organising the dataset to get monthly rainfall volumes for each district for each year-month combinations
+
 # Please note that if the data table you are working with has a first column titled 'X', 
 # then please delete the column before running the 'melt' command by using this command: 'd$X <- NULL'. 
 
@@ -695,28 +696,54 @@ library(reshape2)
 dm <- melt(d, id = c('State.ID', 'District.ID', 'Year'))
 View(dm)
 
-# Generating monthly average rainfall for all districts for all years
+# Generating monthly average rainfall for all districts for all years, 
+# and multiplying by "12" to obtain annual (aggregate) rainfall for each district
 dm$Avg.Monthly.Rainfall <- with(dm, ave(value, State.ID, District.ID, Year))
+dm$Annual.Rainfall <- with(dm, Avg.Monthly.Rainfall * 12)
 View(dm)
+
+# Saving the file
+write.csv(dm, file = "imd_states_name_1-35_annual-rainfall.csv")
 
 # Keeping only one month ("January") per year, and removing all the rest
 d2 <- subset(dm, dm$variable == "January")
 d2$variable <- NULL
 d2$value <- NULL
+d2$Avg.Monthly.Rainfall <- NULL
 
 # Saving the file
-write.csv(d2, file = "imd_states_name_1-35_avg-monthly-rainfall.csv")
+write.csv(d2, file = "imd_states_name_1-35_annual-rainfall-edited.csv")
+
+# Since both Chhattisgarh and Maharashtra have a district each called "Raigarh", 
+# the districts are manually renamed as "Raigarh (Chhattisgarh)" and "Raigarh (Maharashtra)", respectively.
+
+# Both Daman & Diu and Gujarat have a district each called "Junagadh", 
+# the districts are manually renamed as "Junagadh (Daman & Diu)" and "Junagadh (Gujarat)", respectively.
+
+# Both Bihar and Maharashtra have a district each called "Aurangabad", 
+# the districts are manually renamed as "Aurangabad (Bihar)" and "Aurangabad (Maharashtra)", respectively.
+
+# Both Himachal Pradesh and Uttar Pradesh have a district each called "Hamirpur", 
+# the districts are manually renamed as "Hamirpur (Himachal Pradesh)" and "Hamirpur (Uttar Pradesh)", respectively.
+
+# The same changes of district naming of polygons are done to the GADM shapefile *IND_adm2.shp* 
+# and the new shapefile is named *IND_adm2_edited.shp*.
+
+# Opening the edited annual rainfall file
+d <- read.csv("imd_states_name_1-35_annual-rainfall-edited.csv")
+
+# Please note that if the data table you are working with has a first column titled 'X', 
+# then please delete the column before running the 'melt' command by using this command: 'd$X <- NULL'.
 
 # Generating a new dataframe containing the districts and their respective ten year (1901-1910) moving average rainfall 
 # for the year 1905
 library(plyr)
-r1 <- ddply(d2, .(District.ID), summarise, Ten.Year.Moving.Avg = mean(Avg.Monthly.Rainfall[Year > 1900 & Year < 1911]))
+r1 <- ddply(d, .(District.ID), summarise, Ten.Year.MA.AR = mean(Annual.Rainfall[Year > 1900 & Year < 1911]))
 r1$Year <- 1905
 View(r1)
-write.csv(r1, file = "imd_rainfall_10_year_MA_1905.csv")
 
 # Taking a subset for 1905 from the reorganised IMD rainfall data file
-r2 <- subset(d2, d2$Year == 1905)
+r2 <- subset(d, d$Year == 1905)
 
 # Merging the 1905 subset of reorganised IMD rainfall data file
 # with the data file containing ten year moving averages for the same year
@@ -724,23 +751,35 @@ m1 <- merge(r2, r1, by.x = "District.ID", all.x = "TRUE", by.y = "District.ID")
 View(m1)
 
 # Generating a separate column with values equal to 75% of the ten year moving average for the district concerned
-m1$Ten.Year.Moving.Avg.75 <- with(m1, Ten.Year.Moving.Avg*0.75)
+m1$Ten.Year.MA.AR.75 <- with(m1, Ten.Year.MA.AR * 0.75)
 View(m1)
 
 # Generating a column named *Drought* that takes the value "1" if average monthly rainfall is lesser than
 # the ten year moving average rainfall for the district concerned, and takes the value "0" otherwise
 m1$Drought <- 0
-m1$Drought [m1$Avg.Monthly.Rainfall < m1$Ten.Year.Moving.Avg.75] <- 1
+m1$Drought [m1$Annual.Rainfall < m1$Ten.Year.MA.AR.75] <- 1
 View(m1)
 
 # Checking if any district has experienced drought
 md <- subset(m1, m1$Drought == "1")
 View(md)
 
+# Some years may not have any district affected by drought. If all the districts take the value "0" for the variable *Drought*,
+# then the following code to generate maps will not work. Hence, we add a row (contained in the file named *imd_rainfall_control_01.csv*)
+# that takes the value "1" for the variable *Drought*. We we add this row to our table as a control row.
+c <- read.csv("imd_rainfall_control_01.csv")
+View(c)
+
+m3 <- rbind(m1,c)
+View(m3)
+
+# Saving the merged data table
+write.csv(m1, file = "imd_rainfall_ten_year_MA_AR_1905.csv")
+
 # Loading GADM data of Indian administrative (district) boundaries
 library(sp)
 library(rgdal)
-i <- readOGR (dsn = "IND_adm/", layer = "IND_adm2")
+i <- readOGR (dsn = "IND_adm/", layer = "IND_adm2_edited")
 
 # Converting map data to a data frame (that can be used by ggplot2) using district names to identify each shape
 library(maptools)
@@ -750,5 +789,5 @@ library(scales)
 m2 <- fortify(i, region = "NAME_2")
 
 # Drawing the map
-ggplot(m1, aes(map_id = District.ID)) + geom_map(aes(fill = Drought), map = m2) + expand_limits(x = m2$long, y = m2$lat) + scale_fill_gradient(low = "#dedede", high = "red", guide = FALSE) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white"), panel.grid.major = element_line(color = "white"), panel.grid.minor = element_line(color = "white")) + xlab("") + ylab("")
+ggplot(m3, aes(map_id = District.ID)) + geom_map(aes(fill = Drought), map = m2) + expand_limits(x = m2$long, y = m2$lat) + scale_fill_gradient(low = "#cccccc", high = "red", guide = FALSE) + theme(panel.background = element_rect(fill = "white"), axis.line = element_line(color = "white"), axis.ticks = element_line(color = "white"), axis.text = element_text(color = "white"), panel.grid.major = element_line(color = "white"), panel.grid.minor = element_line(color = "white")) + xlab("") + ylab("")
 
